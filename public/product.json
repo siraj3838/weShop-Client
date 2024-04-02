@@ -1,0 +1,157 @@
+[
+    {
+      "title": "Nova X Pro",
+      "description": "Experience cutting-edge technology with the Nova X Pro. Equipped with advanced features and sleek design, this phone offers unparalleled performance.",
+      "rating": 4.5,
+      "brand": "NovaTech",
+      "price": 599.99,
+      "offerPrice": 549.99,
+      "quantity": 100,
+      "availableQuantity": 50,
+      "multiImg": ["https://i.ibb.co/VTR2DnM/xiaomi-14-removebg-preview.png", "nova_x_pro_2.jpg"]
+    },
+    {
+      "title": "Galaxy Pulse 10",
+      "description": "Step into the future with the Galaxy Pulse 10. With its stunning display, powerful processor, and innovative features, it's a phone like no other.",
+      "rating": 4.2,
+      "brand": "Samsung",
+      "price": 799.99,
+      "offerPrice": 749.99,
+      "quantity": 150,
+      "availableQuantity": 100,
+      "multiImg": ["https://i.ibb.co/4f44j07/htc-desire-630-removebg-preview.png", "galaxy_pulse_10_2.jpg"]
+    },
+    {
+      "title": "EagleEye X9",
+      "description": "Capture every moment with clarity and precision using the EagleEye X9. Its advanced camera technology and intuitive features make photography a breeze.",
+      "rating": 4.0,
+      "brand": "EagleTech",
+      "price": 499.99,
+      "offerPrice": 459.99,
+      "quantity": 120,
+      "availableQuantity": 80,
+      "multiImg": ["https://i.ibb.co/2vJ9Lxj/HTC-U23-Pro-Brown-removebg-preview.png", "eagleeye_x9_2.jpg"]
+    },
+    {
+      "title": "Phoenix X2",
+      "description": "Rise above the rest with the Phoenix X2. Sleek design, powerful performance, and long-lasting battery life make it the perfect companion for your busy lifestyle.",
+      "rating": 4.7,
+      "brand": "Phoenix Mobile",
+      "price": 449.99,
+      "offerPrice": 419.99,
+      "quantity": 200,
+      "availableQuantity": 150,
+      "multiImg": ["https://i.ibb.co/PC0R6dy/nokia-9-pureview-removebg-preview.png", "phoenix_x2_2.jpg"]
+    },
+    {
+      "title": "Titan 11",
+      "description": "Unleash the power of the Titan 11. With its lightning-fast processor and stunning display, this phone is built to handle anything you throw at it.",
+      "rating": 4.3,
+      "brand": "Titanic",
+      "price": 899.99,
+      "offerPrice": 849.99,
+      "quantity": 80,
+      "availableQuantity": 30,
+      "multiImg": ["https://i.ibb.co/KWMtQc0/nokia-81-plus-removebg-preview.png", "titan_11_2.jpg"]
+    },
+    {
+      "title": "Aurora E3",
+      "description": "Illuminate your life with the Aurora E3. With its vibrant display and immersive sound, it's the perfect device for entertainment on the go.",
+      "rating": 4.1,
+      "brand": "Aurora",
+      "price": 699.99,
+      "offerPrice": 649.99,
+      "quantity": 100,
+      "availableQuantity": 70,
+      "multiImg": ["https://i.ibb.co/CPPct2q/Nokia-G20-removebg-preview.png", "aurora_e3_2.jpg"]
+    },
+    {
+      "title": "Nebula Z5",
+      "description": "Enter a world of endless possibilities with the Nebula Z5. Its sleek design, powerful performance, and innovative features make it the ultimate smartphone.",
+      "rating": 4.6,
+      "brand": "Nebula",
+      "price": 549.99,
+      "offerPrice": 519.99,
+      "quantity": 150,
+      "availableQuantity": 120,
+      "multiImg": ["https://i.ibb.co/Hdg3c09/Oppo-F19-Pro-Purple-removebg-preview.png", "nebula_z5_2.jpg"]
+    },
+    {
+      "title": "Raptor S7",
+      "description": "Dominate the competition with the Raptor S7. With its blazing-fast processor and stunning graphics, it's the perfect device for gaming enthusiasts.",
+      "rating": 4.4,
+      "brand": "Raptor",
+      "price": 749.99,
+      "offerPrice": 699.99,
+      "quantity": 180,
+      "availableQuantity": 100,
+      "multiImg": ["https://i.ibb.co/2g2XMTw/20230207-1675767754-774783-removebg-preview.png", "raptor_s7_2.jpg"]
+    },
+    {
+      "title": "Vortex V10",
+      "description": "Experience the ultimate in performance and innovation with the Vortex V10. With its cutting-edge features and sleek design, it's the perfect blend of style and substance.",
+      "rating": 4.8,
+      "brand": "Vortex",
+      "price": 999.99,
+      "offerPrice": 949.99,
+      "quantity": 120,
+      "availableQuantity": 80,
+      "multiImg": ["https://i.ibb.co/rxrxrTK/samsung-galaxy-f42-5g-removebg-preview.png", "vortex_v10_2.jpg"]
+    },
+    {
+      "title": "Orbit O9",
+      "description": "Navigate your world with ease with the Orbit O9. Its intuitive features and sleek design make it the perfect companion for your everyday adventures.",
+      "rating": 4.2,
+      "brand": "Orbit",
+      "price": 599.99,
+      "offerPrice": 549.99,
+      "quantity": 200,
+      "availableQuantity": 150,
+      "multiImg": ["https://i.ibb.co/82tyzjY/samsung-galaxy-z-fold4-removebg-preview.png", "orbit_o9_2.jpg"]
+    },
+    {
+      "title": "Vortex V11",
+      "description": "Experience the ultimate in performance and innovation with the Vortex V10. With its cutting-edge features and sleek design, it's the perfect blend of style and substance.",
+      "rating": 4.8,
+      "brand": "Vortex",
+      "price": 999.99,
+      "offerPrice": 949.99,
+      "quantity": 120,
+      "availableQuantity": 80,
+      "multiImg": ["https://i.ibb.co/zSGZySz/samsung-galaxy-a15-5g-new-removebg-preview.png", "vortex_v10_2.jpg"]
+    },
+    {
+      "title": "Orbit 10",
+      "description": "Navigate your world with ease with the Orbit O9. Its intuitive features and sleek design make it the perfect companion for your everyday adventures.",
+      "rating": 4.2,
+      "brand": "Orbit",
+      "price": 599.99,
+      "offerPrice": 549.99,
+      "quantity": 200,
+      "availableQuantity": 150,
+      "multiImg": ["https://i.ibb.co/vDKrZLF/1701853156155a108438623ad41aaa47d42a5ac637db5-removebg-preview.png", "orbit_o9_2.jpg"]
+    },
+    {
+      "title": "Vortex V12",
+      "description": "Experience the ultimate in performance and innovation with the Vortex V10. With its cutting-edge features and sleek design, it's the perfect blend of style and substance.",
+      "rating": 4.8,
+      "brand": "Vortex",
+      "price": 999.99,
+      "offerPrice": 949.99,
+      "quantity": 120,
+      "availableQuantity": 80,
+      "multiImg": ["https://i.ibb.co/zSGZySz/samsung-galaxy-a15-5g-new-removebg-preview.png", "vortex_v10_2.jpg"]
+    },
+    {
+      "title": "Orbit 11",
+      "description": "Navigate your world with ease with the Orbit O9. Its intuitive features and sleek design make it the perfect companion for your everyday adventures.",
+      "rating": 4.2,
+      "brand": "Orbit",
+      "price": 599.99,
+      "offerPrice": 549.99,
+      "quantity": 200,
+      "availableQuantity": 150,
+      "multiImg": ["https://i.ibb.co/vDKrZLF/1701853156155a108438623ad41aaa47d42a5ac637db5-removebg-preview.png", "orbit_o9_2.jpg"]
+    }
+  ]
+  

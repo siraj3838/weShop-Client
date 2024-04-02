@@ -1,0 +1,287 @@
+/* Footer Menu  */
+.textBox {
+  white-space: nowrap;
+  transform: translateX(0);
+  transition: 0.5s;
+}
+
+.textBox:hover {
+  transform: translateX(calc(120px - 100%));
+}
+
+
+/* Product Details Css */
+.thumbnail .keen-slider__slide {
+  max-width: 4rem !important;
+  min-width: 4rem !important;
+}
+
+.thumbnail .keen-slider__slide.active {
+  max-width: 4rem !important;
+  min-width: 4rem !important;
+}
+
+/* Product Details Quantity Button */
+.btn {
+  box-shadow: none !important;
+}
+
+.quantity {
+  width: 144px;
+  padding: 2px;
+
+  .btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .form-control {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    text-align: center;
+    border: 0;
+
+    &::-webkit-inner-spin-button {
+      display: none;
+    }
+  }
+}
+
+
+/* Review CSS  */
+.containers {
+  background: #fff;
+  padding: 25px 40px 10px 40px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.containers .text {
+  text-align: center;
+  font-size: 41px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.containers form {
+  padding: 0px 0 0 0;
+}
+
+.containers form .form-row {
+  display: flex;
+  margin: 32px 0;
+}
+
+form .form-row .input-data {
+  width: 100%;
+  height: 60px;
+  margin: 0 20px;
+  position: relative;
+  padding-top: 30px;
+}
+
+form .form-row .textarea {
+  height: 55px;
+}
+
+.input-data input,
+.textarea textarea {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size: 17px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.12);
+}
+
+.input-data input:focus~label,
+.textarea textarea:focus~label,
+.input-data input:valid~label,
+.textarea textarea:valid~label {
+  transform: translateY(-20px);
+  font-size: 14px;
+  color: #3498db;
+}
+
+.textarea textarea {
+  resize: none;
+  padding-top: 10px;
+}
+
+.input-data label {
+  position: absolute;
+  pointer-events: none;
+  bottom: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.textarea label {
+  width: 100%;
+  bottom: 40px;
+  background: #fff;
+}
+
+.input-data .underline {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+}
+
+.input-data .underline:before {
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 100%;
+  background: #3498db;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.input-data input:focus~.underline:before,
+.input-data input:valid~.underline:before,
+.textarea textarea:focus~.underline:before,
+.textarea textarea:valid~.underline:before {
+  transform: scale(1);
+}
+
+.submit-btn .input-data {
+  overflow: hidden;
+  height: 50px !important;
+  width: 25% !important;
+  border-radius: 10px;
+}
+
+.submit-btn .input-data .inner {
+  height: 100%;
+  width: 300%;
+  position: absolute;
+  left: -100%;
+  background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+  transition: all 0.4s;
+  border-radius: 10px;
+}
+
+.submit-btn .input-data:hover .inner {
+  left: 0;
+}
+
+.submit-btn .input-data input {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  border-radius: 10px;
+}
+
+
+/* textarea */
+.extra>.input-data.textarea.px-0.pb-0 {
+  margin-top: 10px;
+  padding-top: 4px !important;
+}
+
+/* Submit Btn */
+
+.marge>.input-data {
+  padding: 0px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 700px) {
+  .containers .text {
+    font-size: 30px;
+  }
+
+  .containers form {
+    padding: 10px 0 0 0;
+  }
+
+  .containers form .form-row {
+    display: block;
+  }
+
+  form .form-row .input-data {
+    margin: 35px 0 !important;
+  }
+
+  .submit-btn .input-data {
+    width: 40% !important;
+  }
+}
+
+/* Responsive */
+@media only screen and (max-width: 1280px) {
+  .footerContent {
+    padding: 30px;
+  }
+}

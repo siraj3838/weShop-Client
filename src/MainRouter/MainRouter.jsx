@@ -1,0 +1,45 @@
+import { createBrowserRouter } from "react-router-dom";
+import Root from "../Root/Root";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import Home from "../Pages/Home/Home";
+import AllProducts from "../Pages/AllProducts/AllProducts";
+import ContactUs from "../Pages/ContactUs/ContactUs";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import Cart from "../Pages/Cart/Cart";
+import ProductDetails from "../components/ProductDetails";
+
+const MainRouter = createBrowserRouter([
+    {
+        path: '/',
+        errorElement: <ErrorPage></ErrorPage>,
+        element: <Root></Root>,
+        children:[
+            {
+                path: '/',
+                element: <Home></Home>
+            },
+            {
+                path: '/products',
+                element: <AllProducts></AllProducts>
+            },
+            {
+                path: '/contactUs',
+                element: <ContactUs></ContactUs>
+            },
+            {
+                path: '/aboutUs',
+                element: <AboutUs></AboutUs>
+            },
+            {
+                path: '/cart',
+                element: <Cart></Cart>
+            },
+            {
+                path: '/productDetails/:id',
+                element: <ProductDetails></ProductDetails>
+            },
+        ]
+    }
+])
+
+export default MainRouter;
