@@ -49,6 +49,25 @@
 }
 
 
+/* Login CSS  */
+.containersL {
+  background: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.containersL .text {
+  text-align: center;
+  font-size: 41px;
+  font-weight: 600;
+  background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.containersL form .form-row {
+  display: flex;
+  margin: 32px 0;
+}
 /* Review CSS  */
 .containers {
   background: #fff;
@@ -83,6 +102,14 @@ form .form-row .input-data {
   padding-top: 30px;
 }
 
+form .form-row .input-data2 {
+  width: 100%;
+  height: 60px;
+  margin: 0 20px;
+  position: relative;
+  padding-top: 30px;
+}
+
 form .form-row .textarea {
   height: 55px;
 }
@@ -96,10 +123,26 @@ form .form-row .textarea {
   font-size: 17px;
   border-bottom: 2px solid rgba(0, 0, 0, 0.12);
 }
+.input-data2 input {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size: 17px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.12);
+}
 
 .input-data input:focus~label,
 .textarea textarea:focus~label,
 .input-data input:valid~label,
+.textarea textarea:valid~label {
+  transform: translateY(-20px);
+  font-size: 14px;
+  color: #3498db;
+}
+.input-data2 input:focus~label,
+.textarea textarea:focus~label,
+.input-data2 input:valid~label,
 .textarea textarea:valid~label {
   transform: translateY(-20px);
   font-size: 14px;
@@ -142,9 +185,25 @@ form .form-row .textarea {
   transform-origin: center;
   transition: transform 0.3s ease;
 }
+.input-data2 .underline:before {
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 100%;
+  background: #3498db;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
 
 .input-data input:focus~.underline:before,
 .input-data input:valid~.underline:before,
+.textarea textarea:focus~.underline:before,
+.textarea textarea:valid~.underline:before {
+  transform: scale(1);
+}
+.input-data2 input:focus~.underline:before,
+.input-data2 input:valid~.underline:before,
 .textarea textarea:focus~.underline:before,
 .textarea textarea:valid~.underline:before {
   transform: scale(1);
@@ -199,6 +258,91 @@ form .form-row .textarea {
 
 
 
+/* Spinner Css  */
+.loading-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  perspective: 1000px;
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.cube.rotate {
+  z-index: 11;
+  animation: panel 12.0s infinite forwards;
+}
+
+.cube div {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  font-size: 160px; /* Adjusted font size */
+  background: linear-gradient(to right, #752efac3, #4b6fffad); /* Gradient background */
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Adding shadow to each side */
+  color: #fff;
+}
+
+.front {
+  transform: translateZ(100px);
+}
+
+.back {
+  transform: rotateY(180deg) translateZ(100px);
+}
+
+.left {
+  transform: rotateY(-90deg) translateZ(100px);
+}
+
+.right {
+  transform: rotateY(90deg) translateZ(100px);
+}
+
+.top {
+  transform: rotateX(90deg) translateZ(100px);
+}
+
+.bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+}
+
+@keyframes panel {
+  0% {
+    transform: rotateX(0deg) rotateZ(0deg);
+  }
+  17% {
+    transform: rotateY(-90deg);
+  }
+  34% {
+    transform: rotateX(-90deg);
+  }
+  51% {
+    transform: rotateX(90deg) rotateY(180deg) rotateX(90deg);
+  }
+  68% {
+    transform: rotateY(90deg);
+  }
+  85% {
+    transform: rotateX(90deg);
+  }
+}
 
 
 
@@ -277,11 +421,22 @@ form .form-row .textarea {
   .submit-btn .input-data {
     width: 40% !important;
   }
+  
+.containers .text {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+}
 }
 
 /* Responsive */
 @media only screen and (max-width: 1280px) {
   .footerContent {
     padding: 30px;
+  }
+  .containers .text {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
   }
 }

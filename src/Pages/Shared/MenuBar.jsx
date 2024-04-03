@@ -5,10 +5,16 @@ import { BiUser } from "react-icons/bi";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../Provider/AuthProvider';
+import toast from 'react-hot-toast';
+import useProfile from '../../Hook/useProfile';
 
 const MenuBar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [openMenu, setOpenMenu] = useState(false);
+    const { user, logOutUser } = useContext(AuthContext);
+    const [currentUser] = useProfile();
     const navList = <>
         <NavLink
             to="/"
@@ -43,7 +49,15 @@ const MenuBar = () => {
             Contact Us
         </NavLink>
     </>
-
+    const handleLogout = () => {
+        logOutUser()
+            .then(() => {
+                toast.success('Logout Successfully')
+            })
+            .catch(error => {
+                console.error(error.message);
+            })
+    }
     return (
         <>
             {/* lg */}
@@ -64,14 +78,37 @@ const MenuBar = () => {
                     </div>
                     <div className='xl:flex-1'>
                         <div className='flex items-center justify-end gap-5 text-4xl pr-2'>
-                            <NavLink
-                                to="/login"
-                                className={({ isActive, isPending }) =>
-                                    isPending ? "pending" : isActive ? "text-[#4B6FFF] font-semibold hover:scale-110 transition-all" : "font-semibold duration-500 text-gray-500 hover:scale-110 transition-all hover:text-[#4B6FFF]"
-                                }
-                            >
-                                <BiUser></BiUser>
-                            </NavLink>
+                            {
+                                user ? <>
+                                    <div className="dropdown dropdown-end mt-2">
+                                        <div onClick={() => setOpenMenu(!openMenu)} tabIndex={0} role="button" className="avatar online">
+                                            <div className="w-12 h-12 rounded-full">
+                                                <div className=""></div>
+                                                <img className='skeleton w-12 h-12 rounded-full shrink-0' src={currentUser?.photoURL} alt="" />
+                                            </div>
+                                        </div>
+                                        <ul tabIndex={0} className={`${openMenu ? 'mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 block' : 'mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 hidden'}`}>
+                                            <li>
+                                                <a className="justify-between">
+                                                    Profile
+                                                    <span className="badge">New</span>
+                                                </a>
+                                            </li>
+                                            <li><a>Settings</a></li>
+                                            <li onClick={handleLogout}><a>Logout</a></li>
+                                        </ul>
+                                    </div>
+                                </>
+                                    :
+                                    <NavLink
+                                        to="/login"
+                                        className={({ isActive, isPending }) =>
+                                            isPending ? "pending" : isActive ? "text-[#4B6FFF] font-semibold hover:scale-110 transition-all" : "font-semibold duration-500 text-gray-500 hover:scale-110 transition-all hover:text-[#4B6FFF]"
+                                        }
+                                    >
+                                        <BiUser></BiUser>
+                                    </NavLink>
+                            }
                             <NavLink
                                 to="/cart"
                                 className={({ isActive, isPending }) =>
@@ -102,14 +139,37 @@ const MenuBar = () => {
                     </div>
                     <div className=''>
                         <div className='flex items-center justify-end gap-5 text-3xl pr-2'>
-                            <NavLink
-                                to="/login"
-                                className={({ isActive, isPending }) =>
-                                    isPending ? "pending" : isActive ? "text-[#4B6FFF] font-semibold hover:scale-110 transition-all" : "font-semibold duration-500 text-gray-500 hover:scale-110 transition-all hover:text-[#4B6FFF]"
-                                }
-                            >
-                                <BiUser></BiUser>
-                            </NavLink>
+                            {
+                                user ? <>
+                                    <div className="dropdown dropdown-end mt-2">
+                                        <div onClick={() => setOpenMenu(!openMenu)} tabIndex={0} role="button" className="avatar online">
+                                            <div className="w-12 h-12 rounded-full">
+                                                <div className=""></div>
+                                                <img className='skeleton w-12 h-12 rounded-full shrink-0' src={currentUser?.photoURL} alt="" />
+                                            </div>
+                                        </div>
+                                        <ul tabIndex={0} className={`${openMenu ? 'mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 block' : 'mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 hidden'}`}>
+                                            <li>
+                                                <a className="justify-between">
+                                                    Profile
+                                                    <span className="badge">New</span>
+                                                </a>
+                                            </li>
+                                            <li><a>Settings</a></li>
+                                            <li onClick={handleLogout}><a>Logout</a></li>
+                                        </ul>
+                                    </div>
+                                </>
+                                    :
+                                    <NavLink
+                                        to="/login"
+                                        className={({ isActive, isPending }) =>
+                                            isPending ? "pending" : isActive ? "text-[#4B6FFF] font-semibold hover:scale-110 transition-all" : "font-semibold duration-500 text-gray-500 hover:scale-110 transition-all hover:text-[#4B6FFF]"
+                                        }
+                                    >
+                                        <BiUser></BiUser>
+                                    </NavLink>
+                            }
                             <NavLink
                                 to="/cart"
                                 className={({ isActive, isPending }) =>

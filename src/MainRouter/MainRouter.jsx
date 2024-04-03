@@ -7,6 +7,8 @@ import ContactUs from "../Pages/ContactUs/ContactUs";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import Cart from "../Pages/Cart/Cart";
 import ProductDetails from "../components/ProductDetails";
+import Login from "../Pages/Login/Login";
+import Registration from "../Pages/Registration/Registration";
 
 const MainRouter = createBrowserRouter([
     {
@@ -33,6 +35,14 @@ const MainRouter = createBrowserRouter([
             {
                 path: '/cart',
                 element: <Cart></Cart>
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/registration',
+                element: <Registration></Registration>
             },
             {
                 path: '/productDetails/:id',
