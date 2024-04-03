@@ -300,7 +300,7 @@ const ProductDetailsReview = ({ product }) => {
                     }
                 </Swiper>
             </div>
-            {/* mobile  */}
+            {/* mobile */}
             <div className='xl:[100px] 2xl:px-[200px] mt-10 xl:hidden block md:hidden'>
                 <Swiper
                     slidesPerView={1}
