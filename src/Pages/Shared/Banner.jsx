@@ -31,16 +31,16 @@ const Banner = () => {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <img className='w-full h-[220px] md:h-[380px] lg:h-[700px]' src={banner2} alt="" />
+                    <img className='w-full h-[220px] md:h-[380px] lg:min-h-[700px]' src={banner2} alt="" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img className='w-full h-[220px] md:h-[380px] lg:h-[700px]' src={banner4} alt="" />
+                    <img className='w-full h-[220px] md:h-[380px] lg:min-h-[700px]' src={banner4} alt="" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img className='w-full h-[220px] md:h-[380px] lg:h-[700px]' src={banner} alt="" />
+                    <img className='w-full h-[220px] md:h-[380px] lg:min-h-[700px]' src={banner} alt="" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img className='w-full h-[220px] md:h-[380px] lg:h-[700px]' src={banner3} alt="" />
+                    <img className='w-full h-[220px] md:h-[380px] lg:min-h-[700px]' src={banner3} alt="" />
                 </SwiperSlide>
             </Swiper>
         </div>

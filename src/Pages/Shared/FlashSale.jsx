@@ -30,11 +30,11 @@ const FlashSale = () => {
             </span>Sale</h2>
             {
                 products?.length == 0 ? <Loading></Loading> :
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 gap-6 pt-4">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-6 pt-4">
                         {
                             isSeeMore ? products?.map(product => <Product product={product} key={product.title}></Product>)
                                 :
-                                products?.slice(0, 14)?.map(product => <Product product={product} key={product.title}></Product>)
+                                products?.slice(0, 12)?.map(product => <Product product={product} key={product.title}></Product>)
                         }
                     </div>
             }

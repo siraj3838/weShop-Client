@@ -4,7 +4,7 @@ const AboutContent = () => {
     return (
         <>
             {/* xl */}
-            <div className="text-center xl:py-16 xl:[100px] 2xl:px-[200px] hidden xl:block bg-[#f9f9f9]">
+            <div className="text-center xl:py-16 xl:[100px] 2xl:px-[200px] hidden xl:block bg-[#E3EEF8]">
                 <h2 className="xl:text-5xl font-bold text-gray-500 mb-4">Shop <span className=" bg-gradient-to-r from-[#772EFA] to-[#4B6FFF] text-transparent bg-clip-text">
                     <TypeAnimation
                         sequence={[
