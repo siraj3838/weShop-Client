@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useContext, useRef } from "react";
 import emailjs from '@emailjs/browser';
+import { TypeAnimation } from "react-type-animation";
 
 const ContactUsMail = () => {
     const { user } = useContext(AuthContext)
@@ -27,6 +28,23 @@ const ContactUsMail = () => {
     }
     return (
         <div className="py-10 xl:py-12 xl:[100px] 2xl:px-[200px] px-5 bg-[#E3EEF8]">
+            <h2 className="text-2xl lg:text-4xl xl:text-5xl font-bold text-gray-500 mb-4 text-center pb-6"> <span className=" bg-gradient-to-r from-[#772EFA] to-[#4B6FFF] text-transparent bg-clip-text">
+                    <TypeAnimation
+                        sequence={[
+                            'Contact', // Types 'One'
+                            1000, // Waits 1s
+                            'Contact With', // Deletes 'One' and types 'Two'
+                            300, // Waits 2s
+                            () => {
+                                console.log('Sequence completed');
+                            },
+                        ]}
+                        wrapper="span"
+                        cursor={true}
+                        repeat={Infinity}
+                        style={{ display: 'inline-block' }}
+                    />
+                </span>Us</h2>
             <div className="grid lg:grid-cols-6 grid-cols-1 gap-12 items-center">
                 <div className="lg:col-span-4">
                     <div className="collapse collapse-arrow border-b-2 border-[#5E53FD]">

@@ -49,7 +49,7 @@ const ResponsiveContent = () => {
                 {/* <div className="divider"></div>  */}
                 <div className="flex flex-col md:flex-row items-center gap-10 py-6 md:py-8 lg:py-8 xl:py-16">
                     <div className="flex-1">
-                        <div className="border-r border-b border-[#772EFA] pr-4 pb-4 lg:pr-6 lg:pb-6">
+                        <div className="border-l border-b border-[#772EFA] pr-4 pb-4 pl-4 lg:pl-6 lg:pb-6">
                             <h3></h3>
                             <h3 className='text-2xl lg:text-4xl font-bold pb-4 lg:pb-7 leading-tight'>Discover Our <span className='bg-gradient-to-r from-[#772EFA] to-[#4B6FFF] text-transparent bg-clip-text'>Library</span><br />Management Project</h3>
                             <p className="text-sm lg:text-lg">This is our Library Management Project, Dive into our extensive collection spanning four diverse categories, catering to every reader's taste and preference. Browse through our meticulously curated selection of books, conveniently organized by genre, author, and popularity. Whether you're seeking thrilling mysteries, captivating fiction, enlightening non-fiction, or educational resources, we have something for everyone.</p>

@@ -1,7 +1,7 @@
 import img from '../../assets/sBanner.jpg'
-import img2 from '../../assets/sBanner2.jpg'
-import img3 from '../../assets/sBanner3.jpg'
-import img4 from '../../assets/sBanner4.jpg'
+import img2 from '../../assets/banner1.jpg'
+import img3 from '../../assets/banner3.jpg'
+import img4 from '../../assets/banner4.jpg'
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -29,9 +29,6 @@ const SecondBanner = () => {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <img className='w-full h-[220px] md:h-[380px] lg:min-h-[600px]' src={img2} alt="" />
-                </SwiperSlide>
-                <SwiperSlide>
                     <img className='w-full h-[220px] md:h-[380px] lg:min-h-[600px]' src={img} alt="" />
                 </SwiperSlide>
                 <SwiperSlide>
@@ -39,6 +36,9 @@ const SecondBanner = () => {
                 </SwiperSlide>
                 <SwiperSlide>
                     <img className='w-full h-[220px] md:h-[380px] lg:min-h-[600px]' src={img4} alt="" />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img className='w-full h-[220px] md:h-[380px] lg:min-h-[600px]' src={img2} alt="" />
                 </SwiperSlide>
             </Swiper>
         </div>

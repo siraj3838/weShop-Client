@@ -370,6 +370,10 @@ form .form-row .textarea {
   color: transparent;
   -webkit-text-stroke: 1.5px #4B6FFF;
 }
+.home-content h3 {
+  font-size: 4.2rem;
+  font-weight: 900;
+}
 
 
 
@@ -535,6 +539,33 @@ form .form-row .textarea {
   }
 }
 
+/* Our Activities css  */
+.home-content {
+  max-width: 100%;
+}
+
+.home-content h1 {
+  font-size: 2.6rem;
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.home-content .text-animate {
+  position: relative;
+  width: 100%;
+}
+
+.home-content .text-animate h3 {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #4B6FFF;
+}
+.home-content h3 {
+  font-size: 2.2rem;
+  font-weight: 900;
+}
+
 }
 
 /* Responsive */
@@ -547,4 +578,30 @@ form .form-row .textarea {
     font-size: 30px;
     font-weight: 600;
   }
+  /* Our Activities css  */
+.home-content {
+  max-width: 100%;
+}
+
+.home-content h1 {
+  font-size: 2.6rem;
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.home-content .text-animate {
+  position: relative;
+  width: 100%;
+}
+
+.home-content .text-animate h3 {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #4B6FFF;
+}
+.home-content h3 {
+  font-size: 2.2rem;
+  font-weight: 900;
+}
 }
