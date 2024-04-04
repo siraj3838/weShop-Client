@@ -46,7 +46,7 @@ const ResponsiveContent = () => {
                         </div>
                     </div>
                 </div>
-                {/* <div className="divider"> </div>  */}
+                {/* <div className="divider"></div>  */}
                 <div className="flex flex-col md:flex-row items-center gap-10 py-6 md:py-8 lg:py-8 xl:py-16">
                     <div className="flex-1">
                         <div className="border-l border-b border-[#772EFA] pr-4 pb-4 pl-4 lg:pl-6 lg:pb-6">
