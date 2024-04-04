@@ -15,7 +15,7 @@ const TextAnimation3 = () => {
             }
         }, 10);
 
-        // Cleanup function to clear the interval when component unmount
+        // Cleanup function to clear the interval when component unmounts
         return () => clearInterval(interval);
     }, [number, users?.length]);
     return (
