@@ -29,16 +29,16 @@ const SecondBanner = () => {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <img className='w-full h-[220px] md:h-[380px] lg:min-h-[600px]' src={img} alt="" />
+                    <img className='w-full h-[220px] md:h-[380px] lg:min-h-[650px]' src={img} alt="" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img className='w-full h-[220px] md:h-[380px] lg:min-h-[600px]' src={img3} alt="" />
+                    <img className='w-full h-[220px] md:h-[380px] lg:min-h-[650px]' src={img3} alt="" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img className='w-full h-[220px] md:h-[380px] lg:min-h-[600px]' src={img4} alt="" />
+                    <img className='w-full h-[220px] md:h-[380px] lg:min-h-[650px]' src={img4} alt="" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img className='w-full h-[220px] md:h-[380px] lg:min-h-[600px]' src={img2} alt="" />
+                    <img className='w-full h-[220px] md:h-[380px] lg:min-h-[650px]' src={img2} alt="" />
                 </SwiperSlide>
             </Swiper>
         </div>
