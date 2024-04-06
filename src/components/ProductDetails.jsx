@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import '../Pages/Shared/all.css'
 import useProducts from "../Hook/useProducts";
 // Import Swiper React components
@@ -27,6 +27,10 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import Rating from "react-rating";
 import ProductDetailsReview from "./ProductDetailsReview";
 import Loading from "../Pages/Shared/Loading";
+import { AuthContext } from "../Provider/AuthProvider";
+import toast from "react-hot-toast";
+import useAxios from "../Hook/useAxios";
+import useCart from "../Hook/useCart";
 
 
 
@@ -37,6 +41,10 @@ const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
     const [products] = useProducts();
+    const {user} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const myAxios = useAxios();
+    const [carts, refetch] = useCart()
     useEffect(() => {
         const findProduct = products.find(pro => pro._id == id)
         setProduct(findProduct)
@@ -56,6 +64,36 @@ const ProductDetails = () => {
     const incremet = () => setQuantity(quantity + 1);
     const decrement = () => setQuantity(quantity - 1);
 
+
+    const handleAddToCart = (id, quantity) => {
+        const total = product?.offerPrice * quantity;
+        const productInfo ={
+            clientEmail: user?.email,
+            clientName: user?.displayName,
+            price: product?.offerPrice,
+            image: product?.multiImg,
+            title: product?.title, 
+            totalPrice: total,
+            totalProduct: quantity
+        }
+        // console.log(productInfo);
+        myAxios.post('/carts', productInfo)
+        .then(res => {
+            if(res.data.insertedId){
+                toast.success('Product Added Done')
+                refetch();
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
+    const handleNotUser = () => {
+        toast.error('Dear Please Login First')
+        navigate('/login')
+
+    }
 
     return (
         <>
@@ -175,10 +213,17 @@ const ProductDetails = () => {
                                         +
                                     </Button>
                                 </div>
-                                <div className="flex items-center gap-4 lg:w-9/12 xl:w-7/12 pt-4">
+                                {
+                                    user?.email ? <div className="flex items-center gap-4 lg:w-9/12 xl:w-7/12 pt-4">
                                     <button className="bg-[#3fa9fb] hover:bg-[#4795d1] xl:py-3 lg:px-5 text-white lg:text-base font-semibold rounded-lg flex-1">Buy Now</button>
-                                    <button className="bg-[#6B3FFB] hover:bg-[#603ecd] xl:py-3 lg:px-5 text-white lg:text-base font-semibold rounded-lg flex-1">Add To Cart</button>
+                                    <button onClick={()=>handleAddToCart(product?._id, quantity)} className="bg-[#6B3FFB] hover:bg-[#603ecd] xl:py-3 lg:px-5 text-white lg:text-base font-semibold rounded-lg flex-1">Add To Cart</button>
                                 </div>
+                                :
+                                <div className="flex items-center gap-4 lg:w-9/12 xl:w-7/12 pt-4">
+                                    <button onClick={handleNotUser} className="bg-[#3fa9fb] hover:bg-[#4795d1] xl:py-3 lg:px-5 text-white lg:text-base font-semibold rounded-lg flex-1">Buy Now</button>
+                                    <button onClick={handleNotUser} className="bg-[#6B3FFB] hover:bg-[#603ecd] xl:py-3 lg:px-5 text-white lg:text-base font-semibold rounded-lg flex-1">Add To Cart</button>
+                                </div>
+                                }
                             </div>
                             {
                                 product ? <div className="lg:col-span-1 bg-[#FAFAFA] py-10">

@@ -9,12 +9,17 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import toast from 'react-hot-toast';
 import useProfile from '../../Hook/useProfile';
+import { MdClose } from "react-icons/md";
+import useCart from '../../Hook/useCart';
 
 const MenuBar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [openMenu, setOpenMenu] = useState(false);
     const { user, logOutUser } = useContext(AuthContext);
     const [currentUser] = useProfile();
+    const [isMenuToggled, setIsMenuToggled] = useState(false);
+    const [carts] = useCart()
+    // console.log(carts);
     const navList = <>
         <NavLink
             to="/"
@@ -61,7 +66,7 @@ const MenuBar = () => {
     return (
         <>
             {/* lg */}
-            <div className='w-full px-[100px] py-2 bg-[#dee4ff] hidden lg:block'>
+            <div className='w-full px-5 2xl:px-[100px] py-2 bg-[#dee4ff] hidden lg:block'>
                 <div className="flex justify-between items-center">
                     <div className='flex-1'>
                         <Link to={'/'}>
@@ -109,14 +114,12 @@ const MenuBar = () => {
                                         <BiUser></BiUser>
                                     </NavLink>
                             }
-                            <NavLink
-                                to="/cart"
-                                className={({ isActive, isPending }) =>
-                                    isPending ? "pending" : isActive ? "text-[#4B6FFF] font-semibold hover:scale-110 transition-all" : "font-semibold duration-500 text-gray-500 hover:scale-110 transition-all hover:text-[#4B6FFF]"
-                                }
+                            <p
+                                className="font-semibold duration-500 text-[#4B6FFF] hover:scale-110 transition-all hover:text-[#4B6FFF] relative"
                             >
-                                <IoBagHandleOutline></IoBagHandleOutline>
-                            </NavLink>
+                                <IoBagHandleOutline className='text-4xl text-gray-500' onClick={() => setIsMenuToggled(!isMenuToggled)}></IoBagHandleOutline>
+                                <span className='absolute text-base top-0 -right-6'>+{carts?.length}</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -170,14 +173,12 @@ const MenuBar = () => {
                                         <BiUser></BiUser>
                                     </NavLink>
                             }
-                            <NavLink
-                                to="/cart"
-                                className={({ isActive, isPending }) =>
-                                    isPending ? "pending" : isActive ? "text-[#4B6FFF] font-semibold hover:scale-110 transition-all" : "font-semibold duration-500 text-gray-500 hover:scale-110 transition-all hover:text-[#4B6FFF]"
-                                }
+                             <p
+                                className="font-semibold duration-500 text-[#4B6FFF] hover:scale-110 transition-all hover:text-[#4B6FFF] relative"
                             >
-                                <IoBagHandleOutline></IoBagHandleOutline>
-                            </NavLink>
+                                <IoBagHandleOutline className='text-4xl text-gray-500' onClick={() => setIsMenuToggled(!isMenuToggled)}></IoBagHandleOutline>
+                                <span className='absolute text-base top-0 -right-6'>+{carts?.length}</span>
+                            </p>
                         </div>
                     </div>
                     {/* <div className='flex-1 flex items-center gap-1'>
@@ -217,6 +218,28 @@ const MenuBar = () => {
                         {navList}
                     </ul>
                 }
+            </div>
+            <div className={`fixed top-[120px] md:top-[136px] lg:top-[140px] 2xl:top-[141px] right-0 bottom-0 z-40 h-full w-[300px] md:w-[400px] xl:w-[500px] bg-[#4392FA] drop-shadow-xl ${isMenuToggled ? '' : 'hidden'}`}>
+                {/* close icon */}
+                <div className="flex justify-end p-12">
+                    <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
+                        <MdClose className="h-6 w-6 text-gray-200"></MdClose>
+                    </button>
+                </div>
+                {/* menu */}
+                <div className={`flex flex-col ml-[33%] gap-10 text-2xl text-white list-none`}>
+                    {
+                        carts ? <>
+                        {
+                            carts?.map(cart => <div key={cart?._id}>
+                                <h3>{cart?.title}</h3>
+                            </div>)
+                        }
+                        </>
+                        :
+                        ''
+                    }
+                </div>
             </div>
         </>
     );
