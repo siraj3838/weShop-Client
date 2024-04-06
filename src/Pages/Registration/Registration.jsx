@@ -89,9 +89,9 @@ const Registration = () => {
     }
 
     return (
-        <div className="mx-5 lg:mx-0 xl:px-[500px] pt-16 pb-16 bg-[#faf9ff]">
+        <div className="mx-5 lg:mx-0 lg:px-[200px] xl:px-[350px] minWidth3xlReg pt-16 pb-16 bg-[#faf9ff]">
 
-            <div className="containersL w-full py-16 px-8 bg-white">
+            <div className="containersL w-full lg:py-16 lg:px-8 py-8 px-6 bg-white">
                 <div className="text">Create Your Account</div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-row">
@@ -101,11 +101,12 @@ const Registration = () => {
                             <label htmlFor="">Full Name</label>
                             {errors.name && <span className="text-red-600">Name Is Required</span>}
                         </div>
-                        <div className="input-data2">
+                        {/* input */}
+                        <div className=" input-data2">
                             <input
                                 type="file" {...register('image')} className="file-input w-full bg-transparent border-2 border-base-300" placeholder="Your Photo" />
-                            <div className="underline"></div>
-                            <label htmlFor="">Your Photo</label>
+                            <div className="md:block hidden underline"></div>
+                            <label htmlFor="" className="hidden">Your Photo</label>
                             {errors.image && <span className="text-red-600">Photo Is Required</span>}
                         </div>
                     </div>

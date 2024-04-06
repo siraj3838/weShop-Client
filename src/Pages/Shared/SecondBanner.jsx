@@ -1,7 +1,7 @@
-import img from '../../assets/sBanner.jpg'
-import img2 from '../../assets/banner1.jpg'
-import img3 from '../../assets/banner3.jpg'
-import img4 from '../../assets/banner4.jpg'
+import img3 from '../../assets/sBanner.jpg'
+import img from '../../assets/sBanner2.jpg'
+import img4 from '../../assets/sBanner4.jpg'
+import img2 from '../../assets/banner2.jpg'
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';

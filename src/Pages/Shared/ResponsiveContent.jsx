@@ -10,14 +10,14 @@ const ResponsiveContent = () => {
     return (
         <div className="relative">
             <Spinner></Spinner>
-            <div className="bg-white py-10 border-2 xl:py-16 xl:[100px] 2xl:px-[200px] px-5">
+            <div className="bg-white py-10 border-2 xl:pt-16 xl:[100px] 2xl:px-[200px] px-5">
                 <div className="absolute xl:right-32 lg:right-14 lg:top-[460px] xl:top-1/4 md:block hidden md:top-[300px] md:right-7">
                     <img className="md:w-[120px] xl:w-3/4" src={down} alt="" />
                 </div>
                 <div className="absolute lg:left-14 lg:top-[500px] xl:left-32 xl:top-1/4 md:block hidden md:top-[340px] md:left-4">
                     <img className="md:w-[170px] xl:w-full" src={up} alt="" />
                 </div>
-                <h2 className="text-2xl lg:text-4xl xl:text-5xl font-bold text-gray-500 mb-4 text-center pb-6">Our <span className=" bg-gradient-to-r from-[#772EFA] to-[#4B6FFF] text-transparent bg-clip-text">
+                <h2 className="text-2xl lg:text-4xl xl:text-5xl font-bold text-gray-500 mb-4 text-center pb-6 xl:pb-0 xl:mb-0">Our <span className=" bg-gradient-to-r from-[#772EFA] to-[#4B6FFF] text-transparent bg-clip-text">
                     <TypeAnimation
                         sequence={[
                             'Recent Project', // Types 'One'
@@ -60,7 +60,7 @@ const ResponsiveContent = () => {
                     </div>
                 </div>
                 {/* <div className="divider"></div>  */}
-                <div className="flex flex-col md:flex-row items-center gap-10 py-6 md:py-8 lg:py-8 xl:py-16">
+                <div className="flex flex-col md:flex-row items-center gap-10 py-6 md:py-8 lg:py-8 xl:pt-16">
                     <div className="flex-1">
                         <img src={img3} alt="" />
                     </div>

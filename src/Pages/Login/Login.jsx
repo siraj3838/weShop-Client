@@ -59,8 +59,8 @@ const Login = () => {
     }
 
     return (
-        <div className="mx-5 lg:mx-0 xl:px-[740px] pt-16 pb-16 bg-[#faf9ff]">
-            <div className="containersL w-full py-16 px-8 bg-white">
+        <div className="mx-5 lg:mx-0 lg:px-[300px] xl:px-[400px] 2xl:px-[500px] minWidth3xl pt-16 pb-16 bg-[#faf9ff]">
+            <div className="containersL w-full lg:py-16 lg:px-8 py-8 px-6 bg-white">
                 <div className="text">Please Login</div>
                 <form onSubmit={handleSubmit(onSubmit)} >
                     <div className="form-row">

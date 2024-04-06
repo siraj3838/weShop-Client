@@ -15,6 +15,7 @@
     "axios": "^1.6.8",
     "emailjs": "^4.0.3",
     "firebase": "^10.10.0",
+    "framer-motion": "^11.0.25",
     "keen-slider": "^6.8.6",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",

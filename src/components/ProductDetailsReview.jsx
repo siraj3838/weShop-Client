@@ -62,7 +62,7 @@ const ProductDetailsReview = ({ product }) => {
     return (
         <>
             {/* large */}
-            <div className='xl:[100px] 2xl:px-[200px] mt-10 hidden 2xl:block'>
+            <div className='xl:[100px] 2xl:px-[130px] mt-10 hidden 2xl:block'>
                 <Swiper
                     slidesPerView={3}
                     spaceBetween={0}
@@ -98,7 +98,7 @@ const ProductDetailsReview = ({ product }) => {
                                 <div>
                                     <img className='w-20' src="https://i.ibb.co/z4K5Cdp/Quote-Marks-Gray.png" alt="" />
                                 </div>
-                                <div className='bg-[#6B3FFB] text-white px-10 pb-10 pt-24 rounded-3xl'>
+                                <div className='bg-[#6B3FFB] text-white px-10 pb-10 pt-20 rounded-3xl'>
                                     <p className='text-base'>{'"' + cR?.message + '"'}</p>
                                     <h4 className='text-center text-3xl font-bold pt-4'>{cR?.name}</h4>
                                     <h4 className="text-xs font-semibold text-[#FFD100] text-center">
@@ -134,7 +134,7 @@ const ProductDetailsReview = ({ product }) => {
                                         />
                                     </h4>
                                 </div>
-                                <div className='absolute top-12 right-44 h-36 w-36 border-4 rounded-full border-white'>
+                                <div className='absolute top-12 right-40 h-36 w-36 border-4 rounded-full border-white'>
                                     <img className='w-full h-full rounded-full' src={cR?.photo} alt="" />
                                 </div>
                             </div>

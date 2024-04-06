@@ -440,7 +440,7 @@ form .form-row .textarea {
   }
 
   form .form-row .input-data {
-    margin: 35px 0 !important;
+    margin: 15px 0 !important;
   }
 
   .submit-btn .input-data {
@@ -566,6 +566,31 @@ form .form-row .textarea {
   font-weight: 900;
 }
 
+/* Login CSS  */
+
+.containersL .text {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+  background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.containersL form .form-row {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 0;
+}
+form .form-row .input-data2 {
+  margin: 0 0px;
+  position: relative;
+  padding-top: 20px;
+}
+form .form-row .input-data {
+  margin: 0 0px;
+}
+
 }
 
 /* Responsive */
@@ -604,4 +629,15 @@ form .form-row .textarea {
   font-size: 2.2rem;
   font-weight: 900;
 }
+}
+
+@media only screen and (min-width: 1680px){
+  .minWidth3xl{
+    padding-left: 650px;
+    padding-right: 650px;
+  }
+  .minWidth3xlReg{
+    padding-left: 550px;
+    padding-right: 550px;
+  }
 }

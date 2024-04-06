@@ -3,9 +3,11 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { useContext, useRef } from "react";
 import emailjs from '@emailjs/browser';
 import { TypeAnimation } from "react-type-animation";
+import { useNavigate } from "react-router-dom";
 
 const ContactUsMail = () => {
     const { user } = useContext(AuthContext)
+    const navigate = useNavigate();
     const form = useRef();
     const sendEmail = (e) => {
         e.preventDefault();
@@ -23,12 +25,12 @@ const ContactUsMail = () => {
     const handleNotUser = (e) => {
         e.preventDefault();
         toast.error('Dear Please Login First')
-        document.getElementById('my_modal_3').showModal()
+        navigate('/login')
 
     }
     return (
-        <div className="py-10 xl:py-12 xl:[100px] 2xl:px-[200px] px-5 bg-[#E3EEF8]">
-            <h2 className="text-2xl lg:text-4xl xl:text-5xl font-bold text-gray-500 mb-4 text-center pb-6"> <span className=" bg-gradient-to-r from-[#772EFA] to-[#4B6FFF] text-transparent bg-clip-text">
+        <div className="py-10 xl:py-16 xl:[100px] 2xl:px-[200px] px-5 bg-[#E3EEF8]">
+            <h2 className="text-2xl lg:text-4xl xl:text-5xl font-bold text-gray-500 mb-4 text-center pb-6 xl:pb-0 xl:mb-0"> <span className=" bg-gradient-to-r from-[#772EFA] to-[#4B6FFF] text-transparent bg-clip-text">
                     <TypeAnimation
                         sequence={[
                             'Contact', // Types 'One'
