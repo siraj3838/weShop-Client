@@ -41,7 +41,7 @@ const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
     const [products] = useProducts();
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     const myAxios = useAxios();
     const [carts, refetch] = useCart()
@@ -67,26 +67,34 @@ const ProductDetails = () => {
 
     const handleAddToCart = (id, quantity) => {
         const total = product?.offerPrice * quantity;
-        const productInfo ={
+        const total2 = product?.price * quantity;
+        const productInfo = {
             clientEmail: user?.email,
             clientName: user?.displayName,
             price: product?.offerPrice,
             image: product?.multiImg,
-            title: product?.title, 
+            title: product?.title,
             totalPrice: total,
-            totalProduct: quantity
+            totalProduct: quantity,
+            brand: product?.brand,
+            oldPrice: total2
         }
         // console.log(productInfo);
         myAxios.post('/carts', productInfo)
-        .then(res => {
-            if(res.data.insertedId){
-                toast.success('Product Added Done')
-                refetch();
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        })
+            .then(res => {
+                if (res.data.insertedId) {
+                    toast.success('Product Added Done')
+                    refetch();
+                }
+                console.log(res.data);
+                if (res.data.message == 'success') {
+                    toast.success('Product Added Done')
+                    refetch();
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     const handleNotUser = () => {
@@ -215,14 +223,14 @@ const ProductDetails = () => {
                                 </div>
                                 {
                                     user?.email ? <div className="flex items-center gap-4 lg:w-9/12 xl:w-7/12 pt-4">
-                                    <button className="bg-[#3fa9fb] hover:bg-[#4795d1] xl:py-3 lg:px-5 text-white lg:text-base font-semibold rounded-lg flex-1">Buy Now</button>
-                                    <button onClick={()=>handleAddToCart(product?._id, quantity)} className="bg-[#6B3FFB] hover:bg-[#603ecd] xl:py-3 lg:px-5 text-white lg:text-base font-semibold rounded-lg flex-1">Add To Cart</button>
-                                </div>
-                                :
-                                <div className="flex items-center gap-4 lg:w-9/12 xl:w-7/12 pt-4">
-                                    <button onClick={handleNotUser} className="bg-[#3fa9fb] hover:bg-[#4795d1] xl:py-3 lg:px-5 text-white lg:text-base font-semibold rounded-lg flex-1">Buy Now</button>
-                                    <button onClick={handleNotUser} className="bg-[#6B3FFB] hover:bg-[#603ecd] xl:py-3 lg:px-5 text-white lg:text-base font-semibold rounded-lg flex-1">Add To Cart</button>
-                                </div>
+                                        <button className="bg-[#3fa9fb] hover:bg-[#4795d1] xl:py-3 lg:px-5 text-white lg:text-base font-semibold rounded-lg flex-1">Buy Now</button>
+                                        <button onClick={() => handleAddToCart(product?._id, quantity)} className="bg-[#6B3FFB] hover:bg-[#603ecd] xl:py-3 lg:px-5 text-white lg:text-base font-semibold rounded-lg flex-1">Add To Cart</button>
+                                    </div>
+                                        :
+                                        <div className="flex items-center gap-4 lg:w-9/12 xl:w-7/12 pt-4">
+                                            <button onClick={handleNotUser} className="bg-[#3fa9fb] hover:bg-[#4795d1] xl:py-3 lg:px-5 text-white lg:text-base font-semibold rounded-lg flex-1">Buy Now</button>
+                                            <button onClick={handleNotUser} className="bg-[#6B3FFB] hover:bg-[#603ecd] xl:py-3 lg:px-5 text-white lg:text-base font-semibold rounded-lg flex-1">Add To Cart</button>
+                                        </div>
                                 }
                             </div>
                             {

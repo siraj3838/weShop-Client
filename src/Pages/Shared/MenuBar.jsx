@@ -5,12 +5,13 @@ import { BiUser } from "react-icons/bi";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import toast from 'react-hot-toast';
 import useProfile from '../../Hook/useProfile';
 import { MdClose } from "react-icons/md";
 import useCart from '../../Hook/useCart';
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const MenuBar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +20,7 @@ const MenuBar = () => {
     const [currentUser] = useProfile();
     const [isMenuToggled, setIsMenuToggled] = useState(false);
     const [carts] = useCart()
+    const [quantity, setQuantity] = useState()
     // console.log(carts);
     const navList = <>
         <NavLink
@@ -63,6 +65,11 @@ const MenuBar = () => {
                 console.error(error.message);
             })
     }
+    useEffect(() => {
+        const quantity2 = carts.reduce((pre, cur) => pre + cur.totalProduct, 0)
+        setQuantity(quantity2)
+    }, [carts])
+    // console.log(quantity);
     return (
         <>
             {/* lg */}
@@ -118,7 +125,7 @@ const MenuBar = () => {
                                 className="font-semibold duration-500 text-[#4B6FFF] hover:scale-110 transition-all hover:text-[#4B6FFF] relative"
                             >
                                 <IoBagHandleOutline className='text-4xl text-gray-500' onClick={() => setIsMenuToggled(!isMenuToggled)}></IoBagHandleOutline>
-                                <span className='absolute text-base top-0 -right-6'>+{carts?.length}</span>
+                                <span className='absolute text-base top-0 -right-6'>+{quantity}</span>
                             </p>
                         </div>
                     </div>
@@ -173,11 +180,11 @@ const MenuBar = () => {
                                         <BiUser></BiUser>
                                     </NavLink>
                             }
-                             <p
+                            <p
                                 className="font-semibold duration-500 text-[#4B6FFF] hover:scale-110 transition-all hover:text-[#4B6FFF] relative"
                             >
                                 <IoBagHandleOutline className='text-4xl text-gray-500' onClick={() => setIsMenuToggled(!isMenuToggled)}></IoBagHandleOutline>
-                                <span className='absolute text-base top-0 -right-6'>+{carts?.length}</span>
+                                <span className='absolute text-base top-0 -right-6'>+{quantity}</span>
                             </p>
                         </div>
                     </div>
@@ -227,17 +234,45 @@ const MenuBar = () => {
                     </button>
                 </div>
                 {/* menu */}
-                <div className={`flex flex-col ml-[33%] gap-10 text-2xl text-white list-none`}>
+                <div className={`flex flex-col px-5 gap-5 text-white list-none`}>
                     {
                         carts ? <>
-                        {
-                            carts?.map(cart => <div key={cart?._id}>
-                                <h3>{cart?.title}</h3>
-                            </div>)
-                        }
+                            {
+                                carts?.map(cart => <div key={cart?._id}
+                                    className='flex justify-between items-center bg-white p-3 border-2 text-black rounded-md'
+                                >
+                                    <div className=''>
+                                        {
+                                            cart?.image ? <img className='w-8 h-12' src={cart?.image[0]} alt="" />
+                                                :
+                                                ''
+                                        }
+                                    </div>
+                                    <div>
+                                        <h3>{cart?.title}</h3>
+                                        <p className='text-sm'>Brand: {cart?.brand}</p>
+                                    </div>
+                                    <div>
+                                        <h3 className="text-lg text-[#4B6FFF] font-medium">
+                                            ${(cart.totalPrice * cart.totalProduct).toFixed(2)}
+                                        </h3>
+                                        <div className="text-sm flex items-center">
+                                            <p className="line-through">
+                                                ${(cart.oldPrice * cart.totalProduct).toFixed(2)}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p>+{cart?.totalProduct}</p>
+                                        <p className='text-2xl'>
+                                            <RiDeleteBin6Line></RiDeleteBin6Line>
+                                        </p>
+                                    </div>
+                                </div>)
+                            }
                         </>
-                        :
-                        ''
+                            :
+                            ''
                     }
                 </div>
             </div>
