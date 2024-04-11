@@ -31,7 +31,7 @@ const ProductSlide = () => {
                 className="mySwiper"
             >
                 {
-                    products?.map(product => <SwiperSlide key={product._id}>
+                    products?.slice(5, 10)?.map(product => <SwiperSlide key={product._id}>
                         <div className='flex flex-col-reverse md:flex-row justify-between items-center py-10 md:py-10 lg:py-4'>
                             <div className="flex-1 md:px-20 text-center md:text-left">
                                 <h3 className='text-2xl lg:text-4xl font-semibold'>{product?.title}</h3>

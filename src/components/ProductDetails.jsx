@@ -41,7 +41,7 @@ const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
     const [products] = useProducts();
-    const { user } = useContext(AuthContext);
+    const { user, isMenuToggled, setIsMenuToggled } = useContext(AuthContext);
     const navigate = useNavigate();
     const myAxios = useAxios();
     const [carts, refetch] = useCart()
@@ -84,11 +84,17 @@ const ProductDetails = () => {
             .then(res => {
                 if (res.data.insertedId) {
                     toast.success('Product Added Done')
+                    setIsMenuToggled(true)
+                    refetch();
+                    
+                }
+                // console.log(res.data);
+                if (res.data.message == 'success') {
+                    toast.error('Please Removed Old Cart First')
                     refetch();
                 }
-                console.log(res.data);
-                if (res.data.message == 'success') {
-                    toast.success('Product Added Done')
+                if (res.data.message == 'removed') {
+                    toast.error('You Already select this cart')
                     refetch();
                 }
             })
@@ -388,10 +394,17 @@ const ProductDetails = () => {
                                             +
                                         </Button>
                                     </div>
-                                    <div className="flex items-center gap-4 pt-2 pb-8">
-                                        <button className="bg-[#3fa9fb] hover:bg-[#4795d1] py-2 px-2 md:py-2 md:px-2 text-white text-base font-semibold rounded-lg flex-1">Buy Now</button>
-                                        <button className="bg-[#6B3FFB] hover:bg-[#603ecd] py-2 px-1.5 md:py-2 md:px-2 text-white text-base font-semibold rounded-lg flex-1">Add To Cart</button>
-                                    </div>
+                                    {
+                                        user?.email ? <div className="flex items-center gap-4 lg:w-9/12 xl:w-7/12 pt-4">
+                                            <button className="bg-[#3fa9fb] hover:bg-[#4795d1] py-2 px-2 md:py-2 md:px-2 text-white text-base font-semibold rounded-lg flex-1">Buy Now</button>
+                                            <button onClick={() => handleAddToCart(product?._id, quantity)} className="bg-[#6B3FFB] hover:bg-[#603ecd] py-2 px-1.5 md:py-2 md:px-2 text-white text-base font-semibold rounded-lg flex-1">Add To Cart</button>
+                                        </div>
+                                            :
+                                            <div className="flex items-center gap-4 lg:w-9/12 xl:w-7/12 pt-4">
+                                                <button onClick={handleNotUser} className="bg-[#3fa9fb] hover:bg-[#4795d1] py-2 px-2 md:py-2 md:px-2 text-white text-base font-semibold rounded-lg flex-1">Buy Now</button>
+                                                <button onClick={handleNotUser} className="bg-[#6B3FFB] hover:bg-[#603ecd] py-2 px-1.5 md:py-2 md:px-2 text-white text-base font-semibold rounded-lg flex-1">Add To Cart</button>
+                                            </div>
+                                    }
                                 </div>
                             </div>
                             {
@@ -549,10 +562,18 @@ const ProductDetails = () => {
                                         +
                                     </Button>
                                 </div>
-                                <div className="flex items-center gap-4 pt-6">
-                                    <button className="bg-[#3fa9fb] hover:bg-[#4795d1] py-2 px-2 md:py-3 md:px-7 text-white text-base font-semibold rounded-lg flex-1">Buy Now</button>
-                                    <button className="bg-[#6B3FFB] hover:bg-[#603ecd] py-2 px-1.5 md:py-3 md:px-7 text-white text-base font-semibold rounded-lg flex-1">Add To Cart</button>
-                                </div>
+                            
+                                {
+                                    user?.email ? <div className="flex items-center gap-4 pt-6">
+                                        <button className="bg-[#3fa9fb] hover:bg-[#4795d1] py-2 px-2 md:py-2 md:px-2 text-white text-base font-semibold rounded-lg flex-1">Buy Now</button>
+                                        <button onClick={() => handleAddToCart(product?._id, quantity)} className="bg-[#6B3FFB] hover:bg-[#603ecd] py-2 px-1.5 md:py-2 md:px-2 text-white text-base font-semibold rounded-lg flex-1">Add To Cart</button>
+                                    </div>
+                                        :
+                                        <div className="flex items-center gap-4 pt-6">
+                                            <button onClick={handleNotUser} className="bg-[#3fa9fb] hover:bg-[#4795d1] py-2 px-2 md:py-3 md:px-7 text-white text-base font-semibold rounded-lg flex-1">Buy Now</button>
+                                            <button onClick={handleNotUser} className="bg-[#6B3FFB] hover:bg-[#603ecd] py-2 px-1.5 md:py-3 md:px-7 text-white text-base font-semibold rounded-lg flex-1">Add To Cart</button>
+                                        </div>
+                                }
                             </div>
                             {
                                 product ? <div className="col-span-1 bg-[#FAFAFA] py-10">

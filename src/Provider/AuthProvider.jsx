@@ -10,6 +10,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
+    const [isMenuToggled, setIsMenuToggled] = useState(false);
     const myAxios = useAxios();
 
     const createUser = (email, password) => {
@@ -35,6 +36,7 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return signOut(auth);
     };
+    
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -84,7 +86,9 @@ const AuthProvider = ({ children }) => {
         loginUser,
         googleLoginUser,
         logOutUser,
-        updateUserProfile
+        updateUserProfile,
+        setIsMenuToggled,
+        isMenuToggled
     }
     return (
         <AuthContext.Provider value={myAuth}>
