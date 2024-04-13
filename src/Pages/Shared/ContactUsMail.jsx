@@ -24,7 +24,7 @@ const ContactUsMail = () => {
                 />
             </span>Us</h2>
             <div className="grid lg:grid-cols-6 grid-cols-1 gap-12 items-center">
-                <div className="lg:col-span-4">
+                <div className="lg:col-span-4 overflow-hidden">
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
@@ -84,7 +84,7 @@ const ContactUsMail = () => {
                     </motion.div>
 
                 </div>
-                <div className="lg:col-span-2 h-full py-8 px-6 md:mx-32 lg:mx-0 rounded-lg shadow-md shadow-[#5E53FD]">
+                <div className="lg:col-span-2 h-full py-8 px-6 md:mx-32 lg:mx-0 rounded-lg shadow-md shadow-[#5E53FD] overflow-hidden">
                     <motion.div
                         initial="hidden"
                         whileInView="visible"

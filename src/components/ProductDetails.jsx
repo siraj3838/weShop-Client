@@ -77,7 +77,8 @@ const ProductDetails = () => {
             totalPrice: total,
             totalProduct: quantity,
             brand: product?.brand,
-            oldPrice: total2
+            oldPrice: total2,
+            itemId: id
         }
         // console.log(productInfo);
         myAxios.post('/carts', productInfo)

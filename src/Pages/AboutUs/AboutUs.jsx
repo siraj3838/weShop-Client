@@ -10,7 +10,7 @@ const AboutUs = () => {
             <div className="flex items-center flex-col-reverse md:flex-row gap-5 md:gap-0">
                 {/* Content */}
                 <div className="flex-1 flex justify-center">
-                    <div>
+                    <div className='overflow-hidden'>
                         <h3 className="text-3xl md:text-4xl font-bold text-[#5265FE] md:text-left text-center">About Us</h3>
                         <motion.div
                         >
@@ -57,9 +57,10 @@ const AboutUs = () => {
                 </div>
             </div>
 
-            <div className={`${textOpen ? 'block' : 'hidden'}`}>
+            <div className={`${textOpen ? 'block' : 'hidden'} overflow-hidden`}>
                 <div className="divider"></div>
                 <motion.div
+                className='overflow-hidden'
                 >
                     {/* main header */}
                     <div>

@@ -9,6 +9,7 @@ import Cart from "../Pages/Cart/Cart";
 import ProductDetails from "../components/ProductDetails";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
+import PaymentHistory from "../Pages/PaymentHistory/PaymentHistory";
 
 const MainRouter = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ const MainRouter = createBrowserRouter([
             {
                 path: '/productDetails/:id',
                 element: <ProductDetails></ProductDetails>
+            },
+            {
+                path: '/paymentHistory',
+                element: <PaymentHistory></PaymentHistory>
             },
         ]
     }

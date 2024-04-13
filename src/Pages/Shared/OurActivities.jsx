@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 const OurActivities = () => {
     return (
-        <div>
+        <div className='overflow-hidden'>
             <motion.div
                 initial="hidden"
                 whileInView="visible"

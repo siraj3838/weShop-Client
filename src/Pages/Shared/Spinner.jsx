@@ -4,10 +4,11 @@ import './all.css'
 const Spinner = () => {
     return (
         <div className='xl:h-[650px] xl:py-16 xl:[100px] 2xl:px-[200px] bg-[#E3EEF8] flex justify-around items-center flex-col md:flex-row gap-10 md:gap-0 py-10 mt-8 lg:mt-0 px-5'>
-            <div className='flex-1'>
+            <div className='flex-1 overflow-hidden'>
                 <h3 className='text-xl lg:text-4xl font-bold pb-4 lg:pb-7 leading-tight text-center lg:text-left'>Your Premier Destination <br /> For <span className='bg-gradient-to-r from-[#772EFA] to-[#4B6FFF] text-transparent bg-clip-text'>Smartphones!</span></h3>
 
                 <motion.div
+                className='overflow-hidden'
                 >
                     {/* main header */}
                     <div>

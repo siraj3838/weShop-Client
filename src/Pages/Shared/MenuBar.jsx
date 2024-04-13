@@ -1,11 +1,11 @@
 
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../assets/Logo.png';
 import { BiUser } from "react-icons/bi";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import toast from 'react-hot-toast';
 import useProfile from '../../Hook/useProfile';
@@ -13,6 +13,10 @@ import { MdClose } from "react-icons/md";
 import useCart from '../../Hook/useCart';
 import { RiDeleteBin6Line } from "react-icons/ri";
 import useAxios from '../../Hook/useAxios';
+import { TfiClose } from "react-icons/tfi";
+import emailjs from '@emailjs/browser';
+import bkash from '../../assets/bkash.png'
+import nogot from '../../assets/nogot.png'
 
 const MenuBar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +27,9 @@ const MenuBar = () => {
     const [quantity, setQuantity] = useState()
     const [totalCost, setTotalCost] = useState(0)
     const myAxios = useAxios();
-    // console.log(carts);
+    const order = "pending";
+    const form = useRef();
+    const navigate = useNavigate();
     const navList = <>
         <NavLink
             to="/"
@@ -91,8 +97,54 @@ const MenuBar = () => {
             })
     }
 
-    const handlePay = (totalCost, carts) => {
-        console.log(totalCost, carts);
+    const handleOrderNow = async (e) => {
+        e.preventDefault();
+
+        const formData = e.target;
+        const email = formData.email.value;
+        const name = formData.name.value;
+        const phone = formData.phone.value;
+        const message = formData.message.value;
+        const address = formData.address.value;
+        const lastNumber = formData.lastNumber.value;
+        const transactionId = formData.transactionId.value;
+        const date = new Date();
+        // Combine form data with other information
+        const totalCostReal = totalCost + (quantity * 60);
+
+
+        const payment = {
+            cartId: carts?.map(item => item._id),
+            itemId: carts?.map(item => item.itemId),
+            totalCost: parseInt(totalCostReal?.toFixed(2)),
+            carts: carts,
+            orderEmail: email,
+            orderName: name,
+            message: message,
+            number: phone,
+            address: address,
+            order,
+            lastNumber,
+            transactionId,
+            date
+        }
+        // console.log(payment);
+        const res = await myAxios.post('/orders', payment)
+        // console.log(res.data);
+        refetch();
+        if (res.data.deleteResult.deletedCount > 0) {
+            // console.log(res.data);
+            emailjs.sendForm('service_vvlritg', 'template_lbadt6z', form.current, '9iRzmO_mGC1PX15jm')
+                .then((result) => {
+                    // console.log(result.text);
+                    // console.log(form);
+                    toast.success('Thank You For order')
+                    setIsMenuToggled(false)
+                    // navigate('/paymentHistory')
+                }, (error) => {
+                    console.log(error);
+                });
+        }
 
     }
 
@@ -129,10 +181,11 @@ const MenuBar = () => {
                                             <li>
                                                 <a className="justify-between">
                                                     Profile
-                                                    <span className="badge">New</span>
                                                 </a>
                                             </li>
-                                            <li><a>Settings</a></li>
+                                            <li>
+                                                <Link to={'/paymentHistory'}>Payment History</Link>
+                                            </li>
                                             <li onClick={handleLogout}><a>Logout</a></li>
                                         </ul>
                                     </div>
@@ -252,87 +305,183 @@ const MenuBar = () => {
                     </ul>
                 }
             </div>
-            <div className={`fixed top-[120px] md:top-[136px] lg:top-[140px] 2xl:top-[141px] right-0 bottom-0 z-40 h-full w-[300px] md:w-[400px] xl:w-[500px] bg-[#4392FA] drop-shadow-xl ${isMenuToggled ? '' : 'hidden'}`}>
-                {/* close icon */}
-                <div className="flex items-center justify-between p-12">
-                    <div className='flex items-center gap-3 cursor-pointer'>
-                        <button onClick={() => {
-                            handlePay(totalCost, carts); // First onclick event
-                            document.getElementById('my_modal_5').showModal(); // Second onclick event
-                        }} className='text-gray-200 border py-1 px-3 hover:bg-[#2d87fd]'>Pay Now</button>
-                        <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-                            <div className="modal-box">
-                                <form>
-                                    
-                                </form>
-                                <div className="modal-action">
-                                    <form method="dialog">
-                                        {/* if there is a button in form, it will close the modal */}
-                                        <button className="btn">Close</button>
+            {
+                user ? <div className={`fixed top-[120px] md:top-[136px] lg:top-[140px] 2xl:top-[141px] right-0 bottom-0 z-40 h-full w-[300px] md:w-[400px] xl:w-[500px] bg-[#4392FA] drop-shadow-xl ${isMenuToggled ? '' : 'hidden'}`}>
+                    {/* close icon */}
+                    <div className="flex items-center justify-between p-12">
+                        <div className='flex items-center gap-3 cursor-pointer'>
+                            <button onClick={() => {
+                                document.getElementById('my_modal_5').showModal();
+                            }} className='text-gray-200 border py-1 px-3 hover:bg-[#2d87fd]'>Pay Now</button>
+                            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle px-5 md:px-0">
+                                <div className="modal-box 2xl:px-10 bg-[#2d87fd] md:py-7">
+                                    <div className='flex justify-between items-center mb-5'>
+                                        <h4 className='text-xl font-semibold text-base-300'>Order Summary</h4>
+                                        <div className="modal-action mt-0">
+                                            <form method="dialog">
+                                                <button className="text-white text-xl"><TfiClose /></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div className={`flex flex-col gap-2 text-white list-none`}>
+                                        {
+                                            carts ? <>
+                                                {
+                                                    carts?.map(cart => <div key={cart?._id}
+                                                        className='flex justify-between items-center bg-white p-1 border-2 text-black rounded'
+                                                    >
+                                                        <div className='flex items-center gap-3'>
+                                                            <div className=''>
+                                                                {
+                                                                    cart?.image ? <img className='w-5 h-8' src={cart?.image[0]} alt="" />
+                                                                        :
+                                                                        ''
+                                                                }
+                                                            </div>
+                                                            <div>
+                                                                <h3 className='text-sm'>{cart?.title}</h3>
+                                                                <p className='text-xs'>+{cart?.totalProduct}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <h3 className="text-sm text-[#4B6FFF] font-medium">
+                                                                ${cart.totalPrice}
+                                                            </h3>
+                                                        </div>
+                                                    </div>)
+                                                }
+                                            </>
+                                                :
+                                                ''
+                                        }
+                                    </div>
+                                    {/* cost */}
+                                    <div className='text-sm text-white flex justify-between items-center mt-4'>
+                                        <p>Shipping Cost</p>
+                                        <p>${quantity < 2 ? `${quantity * 60}` : `${quantity * 60}`}</p>
+                                    </div>
+                                    <div className='text-white flex justify-between items-center mt-3 text-lg font-semibold'>
+                                        <h3>Total</h3>
+                                        <h3>${(totalCost ? totalCost + quantity * 60 : 0).toFixed(2)}</h3>
+                                    </div>
+                                    <div className='flex items-center justify-center gap-3'>
+                                        <img className='w-20 md:w-28' src={bkash} alt="" />
+                                        <img className='w-20 md:w-28' src={nogot} alt="" />
+                                    </div>
+                                    <div className='mb-3 text-white text-center'>
+                                        <h5 className='text-sm'>Send Money Bksah/Nogot</h5>
+                                        <h4 className='font-semibold'>+8801741352039</h4>
+                                    </div>
+                                    <form ref={form} onSubmit={handleOrderNow} className='flex flex-col w-full items-center gap-2'>
+                                        <div className='w-full'>
+                                            <label className="text-white text-sm font-medium"><span className='text-red-700 text-base'>*</span> Last 4 Number:</label>
+                                            <input className='w-full focus:bg-gray-50 focus:outline-none bg-white py-1 px-3 rounded text-sm' type="text" name='lastNumber' placeholder='Your Last Four Digit...' required />
+                                        </div>
+                                        <div className='w-full'>
+                                            <label className="text-white text-sm font-medium"><span className='text-red-700 text-base'>*</span> Transaction Id:</label>
+                                            <input className='w-full focus:bg-gray-50 focus:outline-none bg-white py-1 px-3 rounded text-sm' type="text" name='transactionId' placeholder='Your Full Address Please' required />
+                                        </div>
+                                        <div className='hidden'>
+                                            <label className="text-white text-sm font-medium"><span className='text-red-700 text-base'>*</span> Your Full Name:</label>
+                                            <input className='w-full focus:bg-gray-50 focus:outline-none bg-white py-1 px-3 rounded text-sm' type="text" name='name' defaultValue={user?.displayName} readOnly />
+                                        </div>
+                                        <div className='hidden'>
+                                            <label className="text-white text-sm font-medium"><span className='text-red-700 text-base'>*</span> Your Email Address:</label>
+                                            <input className='w-full focus:bg-gray-50 focus:outline-none bg-white py-1 px-3 rounded text-sm' type="email" name='email' defaultValue={user?.email} readOnly />
+                                        </div>
+                                        <div className='w-full'>
+                                            <label className="text-white text-sm font-medium"><span className='text-red-700 text-base'>*</span> Your Contact Number:</label>
+                                            <input className='w-full focus:bg-gray-50 focus:outline-none bg-white py-1 px-3 rounded text-sm' type="text" name='phone' placeholder='Phone Number Please' />
+                                        </div>
+                                        <div className='w-full'>
+                                            <label className="text-white text-sm font-medium"><span className='text-red-700 text-base'>*</span> Your Current Address:</label>
+                                            <input className='w-full focus:bg-gray-50 focus:outline-none bg-white py-1 px-3 rounded text-sm' type="text" name='address' placeholder='Your Full Address Please' />
+                                        </div>
+                                        <div className='w-full'>
+                                            <label className="text-white text-sm font-medium"><span className='text-red-700 text-base'>*</span> Type Any Message:</label>
+                                            <textarea className='w-full focus:bg-gray-50 focus:outline-none bg-white py-1 px-3 rounded text-sm' name="message" id="" cols="30" placeholder='Notes about your order, such as special notes for delivery.'></textarea>
+                                        </div>
+                                        <button className="block w-full select-none rounded-lg bg-[#5820ff] py-[10px] text-center align-middle font-sans text-lg font-semibold text-white shadow-md hover:scale-110 duration-600 transition-all focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none mt-1"
+                                            type="submit">
+                                            Order Now
+                                        </button>
                                     </form>
+
                                 </div>
-                            </div>
-                        </dialog>
-                        <h4 className='text-white'>${totalCost?.toFixed(2)}</h4>
+                            </dialog>
+                            <h4 className='text-white'>${totalCost?.toFixed(2)}</h4>
+                        </div>
+                        <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
+                            <MdClose className="h-6 w-6 text-gray-200"></MdClose>
+                        </button>
                     </div>
-                    <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-                        <MdClose className="h-6 w-6 text-gray-200"></MdClose>
-                    </button>
-                </div>
-                {/* menu */}
-                <div className={`flex flex-col px-5 gap-2 md:gap-5 text-white list-none`}>
-                    {
-                        carts ? <>
-                            {
-                                carts?.map(cart => <div key={cart?._id}
-                                    className='flex justify-between items-center bg-white p-3 border-2 text-black rounded-md'
-                                >
-                                    <div className='flex items-center gap-3'>
-                                        <div className=''>
-                                            {
-                                                cart?.image ? <img className='w-8 h-12' src={cart?.image[0]} alt="" />
-                                                    :
-                                                    ''
-                                            }
+                    {/* menu */}
+                    <div className={`flex flex-col px-5 gap-2 md:gap-5 text-white list-none`}>
+                        {
+                            carts ? <>
+                                {
+                                    carts?.map(cart => <div key={cart?._id}
+                                        className='flex justify-between items-center bg-white p-3 border-2 text-black rounded-md'
+                                    >
+                                        <div className='flex items-center gap-3'>
+                                            <div className=''>
+                                                {
+                                                    cart?.image ? <img className='w-8 h-12' src={cart?.image[0]} alt="" />
+                                                        :
+                                                        ''
+                                                }
+                                            </div>
+                                            <div>
+                                                <h3 className='text-sm md:text-base'>{cart?.title}</h3>
+                                                <p className='text-xs md:text-sm'>Brand: {cart?.brand}</p>
+                                            </div>
                                         </div>
                                         <div>
-                                            <h3 className='text-sm md:text-base'>{cart?.title}</h3>
-                                            <p className='text-xs md:text-sm'>Brand: {cart?.brand}</p>
+                                            <h3 className="text-lg text-[#4B6FFF] font-medium">
+                                                ${cart.totalPrice}
+                                            </h3>
+                                            <div className="text-sm flex items-center">
+                                                <p className="line-through">
+                                                    ${cart.oldPrice}
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        {/* <h3 className="text-lg text-[#4B6FFF] font-medium">
-                                            ${(cart.totalPrice * cart.totalProduct).toFixed(2)}
-                                        </h3>
-                                        <div className="text-sm flex items-center">
-                                            <p className="line-through">
-                                                ${(cart.oldPrice * cart.totalProduct).toFixed(2)}
-                                            </p>
-                                        </div> */}
-                                        <h3 className="text-lg text-[#4B6FFF] font-medium">
-                                            ${cart.totalPrice}
-                                        </h3>
-                                        <div className="text-sm flex items-center">
-                                            <p className="line-through">
-                                                ${cart.oldPrice}
+                                        <div onClick={() => handleRemoved(cart._id)}>
+                                            <p>+{cart?.totalProduct}</p>
+                                            <p className='text-2xl'>
+                                                <RiDeleteBin6Line></RiDeleteBin6Line>
                                             </p>
                                         </div>
-                                    </div>
-                                    <div onClick={() => handleRemoved(cart._id)}>
-                                        <p>+{cart?.totalProduct}</p>
-                                        <p className='text-2xl'>
-                                            <RiDeleteBin6Line></RiDeleteBin6Line>
-                                        </p>
-                                    </div>
-                                </div>)
-                            }
-                        </>
-                            :
-                            ''
-                    }
-                </div>
+                                    </div>)
+                                }
+                            </>
+                                :
+                                ''
+                        }
+                    </div>
 
-            </div>
+                </div>
+                    :
+                    <div className={`fixed top-[93px] md:top-[110px] lg:top-[140px] 2xl:top-[141px] right-0 bottom-0 z-40 h-full w-[300px] md:w-[400px] xl:w-[500px] bg-[#4392FA] drop-shadow-xl ${isMenuToggled ? '' : 'hidden'}`}>
+                        {/* close icon */}
+                        <div className="flex items-center justify-between p-7 md:p-12">
+                            <h4 className='text-xl font-semibold text-base-300'>Order Summary</h4>
+                            <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
+                                <MdClose className="h-6 w-6 text-gray-200"></MdClose>
+                            </button>
+                        </div>
+                        <div className='h-1/6 md:h-2/6 relative'>
+                            <div className='absolute bottom-0 left-8 md:left-16 xl:left-32'>
+                                <h3 className='text-white text-xl md:text-2xl text-center font-medium'>Dear Please Login First</h3>
+                                <div className='flex justify-center mt-3'>
+                                    <Link to={'/login'}>
+                                        <button className='bg-white py-1.5 px-3 hover:bg-slate-100'>Login</button>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            }
         </>
     );
 };

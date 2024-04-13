@@ -16,7 +16,7 @@ import { motion } from 'framer-motion'
 const Banner = () => {
     return (
         <div>
-            <div className='gap-16 bg-gray-20 py-10 md:h-full md:pb-0'>
+            <div className='gap-16 bg-gray-20 py-10 md:h-full md:pb-0 overflow-hidden'>
                 {/* image */}
                 <motion.div
                     className='md:flex mx-auto w-5/6 items-center justify-center md:h-5/6 md:py-10 lg:pb-12'

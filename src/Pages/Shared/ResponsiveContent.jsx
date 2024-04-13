@@ -39,7 +39,7 @@ const ResponsiveContent = () => {
                     <div className="flex-1">
                         <img src={img2} alt="" />
                     </div>
-                    <div className="flex-1">
+                    <div className="flex-1 overflow-hidden">
                         <motion.div
                         >
                             {/* main header */}
@@ -69,8 +69,9 @@ const ResponsiveContent = () => {
                 </div>
                 {/* <div className="divider"></div>  */}
                 <div className="flex flex-col md:flex-row items-center gap-10 py-6 md:py-8 lg:py-8 xl:py-16">
-                    <div className="flex-1">
+                    <div className="flex-1 overflow-hidden">
                         <motion.div
+                        className="overflow-hidden"
                         >
                             {/* main header */}
                             <div>
@@ -106,8 +107,9 @@ const ResponsiveContent = () => {
                     <div className="flex-1">
                         <img src={img3} alt="" />
                     </div>
-                    <div className="flex-1">
+                    <div className="flex-1 overflow-hidden">
                         <motion.div
+                        className="overflow-hidden"
                         >
                             {/* main header */}
                             <div>
