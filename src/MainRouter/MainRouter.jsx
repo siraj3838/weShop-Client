@@ -10,13 +10,17 @@ import ProductDetails from "../components/ProductDetails";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 import PaymentHistory from "../Pages/PaymentHistory/PaymentHistory";
+import PenOrderDetails from "../components/PenOrderDetails";
+import PrivateRouter from "./PrivateRouter/PrivateRouter";
+import AdminPaymentHistory from "../Pages/AdminPaymentHistory/AdminPaymentHistory";
+import UploadProducts from "../Pages/UploadProducts/UploadProducts";
 
 const MainRouter = createBrowserRouter([
     {
         path: '/',
         errorElement: <ErrorPage></ErrorPage>,
         element: <Root></Root>,
-        children:[
+        children: [
             {
                 path: '/',
                 element: <Home></Home>
@@ -47,11 +51,23 @@ const MainRouter = createBrowserRouter([
             },
             {
                 path: '/productDetails/:id',
-                element: <ProductDetails></ProductDetails>
+                element: <PrivateRouter><ProductDetails></ProductDetails></PrivateRouter>
+            },
+            {
+                path: '/penOrderDetails/:id',
+                element: <PrivateRouter><PenOrderDetails></PenOrderDetails></PrivateRouter>
             },
             {
                 path: '/paymentHistory',
-                element: <PaymentHistory></PaymentHistory>
+                element: <PrivateRouter><PaymentHistory></PaymentHistory></PrivateRouter>
+            },
+            {
+                path: '/uploadProducts',
+                element: <PrivateRouter><UploadProducts></UploadProducts></PrivateRouter>
+            },
+            {
+                path: '/adminPaymentHistory',
+                element: <PrivateRouter><AdminPaymentHistory></AdminPaymentHistory></PrivateRouter>
             },
         ]
     }

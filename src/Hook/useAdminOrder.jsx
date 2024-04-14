@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import useAxios from "./useAxios";
 
-const useOrder = () => {
+const useAdminOrder = () => {
     const { user } = useContext(AuthContext);
     const myAxios = useAxios();
     const [asc, setAsc] = useState(false)
@@ -11,11 +11,10 @@ const useOrder = () => {
         queryKey: ["userAsc", user?.email, asc],
         queryFn: async () => {
             const res = await myAxios.get(`/orders?sort=${asc ? '' : 'asc'}`);
-            const findUser = res?.data?.filter(api => api?.orderEmail == user?.email)
-            return findUser;
+            return res.data;
         }
     })
     return [orders, refetch]
 };
 
-export default useOrder;
+export default useAdminOrder;

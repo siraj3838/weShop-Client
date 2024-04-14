@@ -376,7 +376,9 @@ form .form-row .textarea {
 }
 
 
-
+.minHScreen {
+  min-height: calc(100vh - 600px);
+}
 
 
 

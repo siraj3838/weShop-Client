@@ -55,11 +55,13 @@ const Banner = () => {
                             }}
                         >
                             <Link>
-                                <button className="rounded-md bg-[#6B3FFB] hover:bg-[#603ecd] lg:px-10 lg:py-2 text-white hover:text-white md:py-2 px-5 py-1">
+                                <button className="rounded-md bg-[#6B3FFB] hover:bg-[#6542db] lg:px-10 lg:py-2 text-white hover:text-white md:py-2 px-5 py-1 duration-500">
                                     Join Now
                                 </button>
                             </Link>
-                            <p>Learn More</p>
+                            <Link to={'/aboutUs'}>
+                                <p className='hover:text-[#6B3FFB] duration-500'>Learn More</p>
+                            </Link>
                         </motion.div>
                     </div>
                     {/* image */}

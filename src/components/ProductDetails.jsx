@@ -114,18 +114,18 @@ const ProductDetails = () => {
         <>
             {
                 product ? <div className="w-full xl:px-[100px] bg-[#EFF0F5] px-5 pb-6 md:pb-5 xl:pb-8">
-                    <div className="pt-8 md:pt-6 lg:pt-8 flex items-center gap-3">
+                    <div className="pt-10 md:pt-12 lg:pt-8 flex items-center gap-1 px-1 md:gap-3 xl:px-[100px] text-sm md:text-base">
                         <Link to={'/'}>
-                            <h6>Home</h6>
+                            <h6 className="cursor-pointer hover:text-[#1976D2]">Home</h6>
                         </Link>
                         <p>
                             <FaAngleRight></FaAngleRight>
                         </p>
-                        <h6>Product Details</h6>
+                        <h6 className="cursor-pointer hover:text-[#1976D2]">Product Details</h6>
                         <p>
                             <FaAngleRight></FaAngleRight>
                         </p>
-                        <h6>{product?.title}</h6>
+                        <h6 className="cursor-pointer hover:text-[#1976D2]">{product?.title}</h6>
                     </div>
                     {/* large */}
                     <div className="xl:pt-8 hidden md:hidden xl:block">

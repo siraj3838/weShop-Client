@@ -3,15 +3,17 @@ import { useForm } from "react-hook-form";
 import useAxios from "../../Hook/useAxios";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import useProducts from '../../Hook/useProducts';
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-const Registration = () => {
+const UploadProducts = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const myAxios = useAxios();
     const [image, setImage] = useState([])
+    const [products, refetch] = useProducts();
 
     const onSubmit = async (data) => {
         try {
@@ -61,6 +63,8 @@ const Registration = () => {
                 .then(res => {
                     if (res.data.insertedId) {
                         toast.success('Your Product Upload Successfully')
+                        refetch();
+                        reset()
                     }
                 })
                 .then(err => {
@@ -170,4 +174,4 @@ const Registration = () => {
     );
 };
 
-export default Registration;
+export default UploadProducts;

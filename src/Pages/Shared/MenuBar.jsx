@@ -17,6 +17,9 @@ import { TfiClose } from "react-icons/tfi";
 import emailjs from '@emailjs/browser';
 import bkash from '../../assets/bkash.png'
 import nogot from '../../assets/nogot.png'
+import useAdmin from '../../Hook/useAdmin';
+import useAdminOrder from '../../Hook/useAdminOrder';
+import orderImg from '../../assets/orderImg.png'
 
 const MenuBar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -30,6 +33,9 @@ const MenuBar = () => {
     const order = "pending";
     const form = useRef();
     const navigate = useNavigate();
+    const [isAdmin] = useAdmin();
+    const [orders] = useAdminOrder();
+    // console.log(isAdmin);
     const navList = <>
         <NavLink
             to="/"
@@ -67,6 +73,7 @@ const MenuBar = () => {
     const handleLogout = () => {
         logOutUser()
             .then(() => {
+                penOrders
                 toast.success('Logout Successfully')
             })
             .catch(error => {
@@ -139,15 +146,22 @@ const MenuBar = () => {
                     // console.log(result.text);
                     // console.log(form);
                     toast.success('Thank You For order')
-                    setIsMenuToggled(false)
-                    // navigate('/paymentHistory')
+                    // setIsMenuToggled(false)
+                    navigate('/paymentHistory')
                 }, (error) => {
                     console.log(error);
                 });
         }
 
     }
-
+    const totalOrderCost = orders.reduce((accumulator, currentValue) => accumulator + currentValue.totalCost,
+        0)
+    const [penOrders, setPenOrders] = useState([]);
+    useEffect(() => {
+        const pendingOrders = orders.filter(order => order.order == 'pending')
+        setPenOrders(pendingOrders);
+    }, [orders])
+    // console.log(orders);
     return (
         <>
             {/* lg */}
@@ -178,14 +192,20 @@ const MenuBar = () => {
                                             </div>
                                         </div>
                                         <ul tabIndex={0} className={`${openMenu ? 'mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 block' : 'mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 hidden'}`}>
-                                            <li>
-                                                <a className="justify-between">
-                                                    Profile
-                                                </a>
+                                            {isAdmin ? <li>
+                                                <Link to={'/uploadProducts'}>Upload Products</Link>
                                             </li>
-                                            <li>
-                                                <Link to={'/paymentHistory'}>Payment History</Link>
+                                                :
+                                                ''
+                                            }
+                                            {isAdmin ? <li>
+                                                <Link to={'/adminPaymentHistory'}>Payment History</Link>
                                             </li>
+                                                :
+                                                <li>
+                                                    <Link to={'/paymentHistory'}>Payment History</Link>
+                                                </li>
+                                            }
                                             <li onClick={handleLogout}><a>Logout</a></li>
                                         </ul>
                                     </div>
@@ -204,7 +224,7 @@ const MenuBar = () => {
                                 className="font-semibold duration-500 text-[#4B6FFF] hover:scale-110 transition-all hover:text-[#4B6FFF] relative"
                             >
                                 <IoBagHandleOutline className='text-4xl text-gray-500' onClick={() => setIsMenuToggled(!isMenuToggled)}></IoBagHandleOutline>
-                                <span className='absolute text-base top-0 -right-6'>+{quantity}</span>
+                                <span className='absolute text-base top-0 -right-6'>{isAdmin ? '+' + penOrders.length : '+' + quantity}</span>
                             </p>
                         </div>
                     </div>
@@ -222,9 +242,14 @@ const MenuBar = () => {
                             }
                         </p>
                     </div>
-                    <div className='flex-1 flex justify-center items-center gap-1'>
-                        <img className='w-11' src={logo} alt="" />
-                        <h3 className='text-2xl font-bold italic bg-gradient-to-r from-[#772EFA] to-[#4B6FFF] text-transparent bg-clip-text pr-2'>weShop</h3>
+
+                    <div className='flex-1'>
+                        <Link to={'/'}>
+                            <div className='flex justify-center items-center gap-1'>
+                                <img className='w-11' src={logo} alt="" />
+                                <h3 className='text-2xl font-bold italic bg-gradient-to-r from-[#772EFA] to-[#4B6FFF] text-transparent bg-clip-text pr-2'>weShop</h3>
+                            </div>
+                        </Link>
                     </div>
                     <div className=''>
                         <div className='flex items-center justify-end gap-5 text-3xl pr-2'>
@@ -238,13 +263,21 @@ const MenuBar = () => {
                                             </div>
                                         </div>
                                         <ul tabIndex={0} className={`${openMenu ? 'mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 block' : 'mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 hidden'}`}>
-                                            <li>
-                                                <a className="justify-between">
-                                                    Profile
-                                                    <span className="badge">New</span>
-                                                </a>
+
+                                            {isAdmin ? <li>
+                                                <Link to={'/uploadProducts'}>Upload Products</Link>
                                             </li>
-                                            <li><a>Settings</a></li>
+                                                :
+                                                ''
+                                            }
+                                            {isAdmin ? <li>
+                                                <Link to={'/adminPaymentHistory'}>Payment History</Link>
+                                            </li>
+                                                :
+                                                <li>
+                                                    <Link to={'/paymentHistory'}>Payment History</Link>
+                                                </li>
+                                            }
                                             <li onClick={handleLogout}><a>Logout</a></li>
                                         </ul>
                                     </div>
@@ -263,7 +296,7 @@ const MenuBar = () => {
                                 className="font-semibold duration-500 text-[#4B6FFF] hover:scale-110 transition-all hover:text-[#4B6FFF] relative"
                             >
                                 <IoBagHandleOutline className='text-4xl text-gray-500' onClick={() => setIsMenuToggled(!isMenuToggled)}></IoBagHandleOutline>
-                                <span className='absolute text-base top-0 -right-6'>+{quantity}</span>
+                                <span className='absolute text-base top-0 -right-6'>{isAdmin ? '+' + penOrders.length : '+' + quantity}</span>
                             </p>
                         </div>
                     </div>
@@ -306,7 +339,7 @@ const MenuBar = () => {
                 }
             </div>
             {
-                user ? <div className={`fixed top-[120px] md:top-[136px] lg:top-[140px] 2xl:top-[141px] right-0 bottom-0 z-40 h-full w-[300px] md:w-[400px] xl:w-[500px] bg-[#4392FA] drop-shadow-xl ${isMenuToggled ? '' : 'hidden'}`}>
+                user && !isAdmin ? <div className={`fixed top-[120px] md:top-[136px] lg:top-[140px] 2xl:top-[141px] right-0 bottom-0 z-40 h-full w-[300px] md:w-[400px] xl:w-[500px] bg-[#4392FA] drop-shadow-xl ${isMenuToggled ? '' : 'hidden'}`}>
                     {/* close icon */}
                     <div className="flex items-center justify-between p-12">
                         <div className='flex items-center gap-3 cursor-pointer'>
@@ -481,6 +514,51 @@ const MenuBar = () => {
                             </div>
                         </div>
                     </div>
+            }
+            {
+                isAdmin ? <div className={`fixed top-[120px] md:top-[136px] lg:top-[140px] 2xl:top-[141px] right-0 bottom-0 z-40 h-full w-[300px] md:w-[400px] xl:w-[500px] bg-[#4392FA] drop-shadow-xl ${isMenuToggled ? '' : 'hidden'}`}>
+                    {/* close icon */}
+                    <div className="flex items-center justify-between p-12">
+                        <div className='flex items-center gap-2 cursor-pointer'>
+                            <h4 className='text-white text-xl font-semibold'>Order Cost:</h4>
+                            <h4 className='text-white text-lg font-semibold'>${totalOrderCost?.toFixed(2)}</h4>
+                        </div>
+                        <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
+                            <MdClose className="h-6 w-6 text-gray-200"></MdClose>
+                        </button>
+                    </div>
+                    {/* menu */}
+                    <div className={`flex flex-col px-5 gap-2 md:gap-5 text-white list-none`}>
+                        {
+                            penOrders ? <>
+                                {
+                                    penOrders?.map(item => <div key={item._id}>
+                                        <div className="border bg-white flex justify-between items-center pr-1 md:pr-5 rounded shadow-lg gap-1 text-black">
+                                            <div className="flex items-center gap-1 md:gap-3">
+                                                <div>
+                                                    <img className="h-16 w-9 md:w-16 md:h-24 rounded-tl rounded-bl" src={orderImg} alt="" />
+                                                </div>
+                                                <div>
+                                                    <h3 className="text-sm md:text-lg">Cost: <span className="font-semibold">${item?.totalCost}</span></h3>
+                                                    <h3 className="text-xs md:text-sm">Tran Id: {item?.transactionId}</h3>
+                                                </div>
+                                            </div>
+                                            <div className='flex items-center gap-3'>
+                                                <p className="text-sm md:text-base">{item?.date?.split('T')[0]}</p>
+                                                <p className="text-sm md:text-lg font-semibold text-center">+{item?.carts?.length}</p>
+                                            </div>
+                                        </div>
+                                    </div>)
+                                }
+                            </>
+                                :
+                                ''
+                        }
+                    </div>
+
+                </div>
+                    :
+                    ''
             }
         </>
     );

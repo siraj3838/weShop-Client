@@ -94,12 +94,12 @@ const ProductDetailsReview = ({ product }) => {
                 >
                     {
                         curReview?.map(cR => <SwiperSlide key={cR._id}>
-                            <div className='bg-white p-10 rounded-lg relative'>
+                            <div className='bg-white p-10 rounded-lg relative ml-5'>
                                 <div>
                                     <img className='w-20' src="https://i.ibb.co/z4K5Cdp/Quote-Marks-Gray.png" alt="" />
                                 </div>
                                 <div className='bg-[#6B3FFB] text-white px-10 pb-10 pt-20 rounded-3xl'>
-                                    <p className='text-base'>{'"' + cR?.message + '"'}</p>
+                                    <p className='text-base h-16'>{'"' + cR?.message + '"'}</p>
                                     <h4 className='text-center text-3xl font-bold pt-4'>{cR?.name}</h4>
                                     <h4 className="text-xs font-semibold text-[#FFD100] text-center">
                                         <Rating
