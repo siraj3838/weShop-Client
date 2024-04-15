@@ -38,7 +38,7 @@ const FlashSale = () => {
                         }
                     </div>
             }
-            <div className="flex justify-center mt-8">
+            <div className="flex justify-center mt-8 mb-8 2xl:mb-0">
                 <button onClick={() => setIsSeeMore(!isSeeMore)} className="bg-[#6B3FFB] py-3 px-7 text-white text-lg font-semibold rounded-lg">{isSeeMore ? 'See Less' : 'See More'}</button>
             </div>
         </div>
