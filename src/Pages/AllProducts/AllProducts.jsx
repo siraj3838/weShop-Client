@@ -38,12 +38,12 @@ const AllProducts = () => {
                             }
                         </div>
                 }
-                <div className="flex justify-center mt-8">
+                <div className="flex justify-center mt-8 mb-8 2xl:mb-0">
                     <button onClick={() => setIsSeeMore(!isSeeMore)} className="bg-[#6B3FFB] py-3 px-7 text-white text-lg font-semibold rounded-lg">{isSeeMore ? 'See Less' : 'See More'}</button>
                 </div>
             </div>
             <ProductSlide></ProductSlide>
-            <div className="xl:py-16 xl:[100px] 2xl:px-[200px] bg-[#fff] px-5">
+            <div className="xl:py-16 xl:[100px] 2xl:px-[200px] bg-[#fff] px-5 py-8">
                 <h2 className="text-2xl lg:text-4xl xl:text-5xl font-bold text-gray-500 mb-4 text-center"> <span className=" bg-gradient-to-r from-[#772EFA] to-[#4B6FFF] text-transparent bg-clip-text">
                     <TypeAnimation
                         sequence={[
