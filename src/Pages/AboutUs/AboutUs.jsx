@@ -60,7 +60,7 @@ const AboutUs = () => {
             <div className={`${textOpen ? 'block' : 'hidden'} overflow-hidden`}>
                 <div className="divider"></div>
                 <motion.div
-                className='overflow-hidden'
+                className=''
                 >
                     {/* main header */}
                     <div>
