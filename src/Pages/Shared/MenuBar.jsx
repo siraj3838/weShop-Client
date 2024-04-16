@@ -202,8 +202,14 @@ const MenuBar = () => {
                                                 <Link to={'/adminPaymentHistory'}>Payment History</Link>
                                             </li>
                                                 :
+                                                ''
+                                            }
+                                            {user & !isAdmin ? <li>
+                                                <Link to={'/paymentHistory'}>Payment History</Link>
+                                            </li>
+                                                :
                                                 <li>
-                                                    <Link to={'/paymentHistory'}>Payment History</Link>
+                                                    <a>Payment History</a>
                                                 </li>
                                             }
                                             <li onClick={handleLogout}><a>Logout</a></li>
@@ -264,7 +270,7 @@ const MenuBar = () => {
                                         </div>
                                         <ul tabIndex={0} className={`${openMenu ? 'mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 block' : 'mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 hidden'}`}>
 
-                                            {isAdmin ? <li>
+                                        {isAdmin ? <li>
                                                 <Link to={'/uploadProducts'}>Upload Products</Link>
                                             </li>
                                                 :
@@ -274,8 +280,14 @@ const MenuBar = () => {
                                                 <Link to={'/adminPaymentHistory'}>Payment History</Link>
                                             </li>
                                                 :
+                                                ''
+                                            }
+                                            {user & !isAdmin ? <li>
+                                                <Link to={'/paymentHistory'}>Payment History</Link>
+                                            </li>
+                                                :
                                                 <li>
-                                                    <Link to={'/paymentHistory'}>Payment History</Link>
+                                                    <a>Payment History</a>
                                                 </li>
                                             }
                                             <li onClick={handleLogout}><a>Logout</a></li>

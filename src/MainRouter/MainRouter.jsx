@@ -51,7 +51,7 @@ const MainRouter = createBrowserRouter([
             },
             {
                 path: '/productDetails/:id',
-                element: <PrivateRouter><ProductDetails></ProductDetails></PrivateRouter>
+                element: <ProductDetails></ProductDetails>
             },
             {
                 path: '/penOrderDetails/:id',
@@ -59,7 +59,7 @@ const MainRouter = createBrowserRouter([
             },
             {
                 path: '/paymentHistory',
-                element: <PrivateRouter><PaymentHistory></PaymentHistory></PrivateRouter>
+                element: <PaymentHistory></PaymentHistory>
             },
             {
                 path: '/uploadProducts',

@@ -388,12 +388,12 @@ const ProductDetailsReview = ({ product }) => {
                         <form onSubmit={handleReview}>
                             <div className="form-row">
                                 <div className="input-data">
-                                    <input name='name' type="text" defaultValue={currentUser?.name} />
+                                    <input name='name' type="text" defaultValue={currentUser?.name ? currentUser?.name : ''} />
                                     <div className="underline"></div>
                                     <label htmlFor="">Full Name</label>
                                 </div>
                                 <div className="input-data">
-                                    <input type="text" name='email' defaultValue={currentUser?.email} />
+                                    <input type="text" name='email' defaultValue={currentUser?.email ? currentUser?.email : ''} />
                                     <div className="underline"></div>
                                     <label htmlFor="">Email Address</label>
                                 </div>
