@@ -14,7 +14,7 @@ const PrivateRouter = ({children}) => {
             <Loading></Loading>
         </div>
     }
-    if(user && isAdmin){
+    if(user){
         return children;
     }
     return <Navigate state={location.pathname} to={'/login'}></Navigate>
