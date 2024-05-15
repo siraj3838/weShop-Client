@@ -2,7 +2,7 @@ import { useContext, useRef } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import emailjs from '@emailjs/browser';
-import toast from "react-hot-toast";
+import toast from "react-hot-toast"
 
 const ContactUsForm = () => {
     const { user } = useContext(AuthContext)
